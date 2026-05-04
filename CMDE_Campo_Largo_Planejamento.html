@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projeto CMDE 2.0 — Campo Largo 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8f7f4; color: #2c2c2a; line-height: 1.6; }
+  .page { max-width: 1000px; margin: 0 auto; padding: 40px 32px; }
+
+  /* ---- HEADER ---- */
+  .header { background: #1a3a5c; color: #fff; border-radius: 12px; padding: 36px 40px; margin-bottom: 40px; }
+  .header h1 { font-size: 26px; font-weight: 600; margin-bottom: 6px; }
+  .header p { font-size: 14px; opacity: 0.7; margin-bottom: 16px; }
+  .header-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+  .badge { background: rgba(255,255,255,0.15); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-weight: 500; }
+
+  /* ---- SECTION ---- */
+  .section { margin-bottom: 48px; }
+  .section-title { font-size: 18px; font-weight: 600; color: #1a3a5c; border-left: 4px solid #1a3a5c; padding-left: 14px; margin-bottom: 20px; }
+  .section-subtitle { font-size: 13px; color: #6b6b68; margin-top: -14px; margin-bottom: 20px; padding-left: 18px; }
+
+  p { font-size: 15px; color: #3d3d3a; margin-bottom: 12px; line-height: 1.7; }
+
+  /* ---- SYSTEM MAP ---- */
+  .system-map { background: #fff; border: 1px solid #e0ded8; border-radius: 12px; padding: 32px; margin-bottom: 24px; }
+  .map-grid { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 24px; align-items: start; }
+  .map-col { display: flex; flex-direction: column; gap: 16px; }
+  .actor-box { border-radius: 10px; padding: 16px; border: 1px solid; }
+  .actor-box h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .actor-box p { font-size: 12px; margin: 0; line-height: 1.5; }
+
+  .box-purple { background: #f0effe; border-color: #8b83dd; color: #3c3489; }
+  .box-purple h3 { color: #3c3489; }
+  .box-purple p { color: #534ab7; }
+
+  .box-blue { background: #e6f1fb; border-color: #378add; color: #0c447c; }
+  .box-blue h3 { color: #0c447c; }
+  .box-blue p { color: #185fa5; }
+
+  .box-amber { background: #faeeda; border-color: #ba7517; color: #633806; }
+  .box-amber h3 { color: #633806; }
+  .box-amber p { color: #854f0b; }
+
+  .box-green { background: #eaf3de; border-color: #3b6d11; color: #27500a; }
+  .box-green h3 { color: #27500a; }
+  .box-green p { color: #3b6d11; }
+
+  .box-gray { background: #f5f4f0; border-color: #b4b2a9; border-style: dashed; color: #5f5e5a; }
+  .box-gray h3 { color: #444441; }
+  .box-gray p { color: #5f5e5a; }
+
+  .center-col { display: flex; flex-direction: column; align-items: center; }
+  .portal-box { background: #e6f1fb; border: 2px solid #378add; border-radius: 12px; padding: 20px; width: 100%; }
+  .portal-box h3 { font-size: 15px; font-weight: 600; color: #0c447c; margin-bottom: 10px; text-align: center; }
+  .portal-inner { background: #fff; border: 1px solid #b5d4f4; border-radius: 8px; padding: 10px 14px; margin-top: 10px; }
+  .portal-inner p { font-size: 12px; color: #185fa5; margin: 0; line-height: 1.5; }
+
+  .arrow-center { text-align: center; font-size: 22px; color: #9c9a92; }
+  .arrow-h { display: flex; align-items: center; justify-content: center; gap: 6px; color: #9c9a92; font-size: 12px; padding: 8px 0; }
+  .arrow-h span { font-size: 18px; }
+
+  .header-badge-green { display: inline-block; background: #eaf3de; border: 1px solid #3b6d11; border-radius: 4px; padding: 2px 10px; font-size: 11px; font-weight: 600; color: #27500a; margin-top: 8px; }
+
+  /* ---- PROCESS FLOW ---- */
+  .flow-container { background: #fff; border: 1px solid #e0ded8; border-radius: 12px; overflow: hidden; }
+  .flow-header { display: grid; grid-template-columns: 1fr 1fr 1fr; text-align: center; }
+  .flow-col-header { padding: 12px; font-size: 13px; font-weight: 600; }
+  .fh-seed { background: #f0effe; color: #3c3489; }
+  .fh-portal { background: #e6f1fb; color: #0c447c; }
+  .fh-mun { background: #faeeda; color: #633806; }
+
+  .flow-rows { }
+  .flow-row { display: grid; grid-template-columns: 1fr 1fr 1fr; min-height: 72px; border-top: 1px solid #f0ede8; }
+  .flow-cell { padding: 12px 14px; display: flex; align-items: flex-start; }
+  .flow-cell.seed { background: #faf9ff; border-right: 1px solid #f0ede8; }
+  .flow-cell.portal { background: #f9fbff; border-right: 1px solid #f0ede8; }
+  .flow-cell.mun { background: #fffaf3; }
+
+  .step-card { background: #fff; border-radius: 8px; border: 1px solid; padding: 10px 12px; width: 100%; }
+  .step-card.s-seed { border-color: #afa9ec; }
+  .step-card.s-portal { border-color: #85b7eb; }
+  .step-card.s-mun { border-color: #fac775; }
+  .step-card.s-green { border-color: #97c459; }
+  .step-num { font-size: 10px; font-weight: 700; color: #9c9a92; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .step-card h4 { font-size: 13px; font-weight: 600; color: #2c2c2a; margin-bottom: 3px; }
+  .step-card p { font-size: 11px; color: #6b6b68; margin: 0; line-height: 1.4; }
+
+  /* ---- SCOPE TABLE ---- */
+  table { width: 100%; border-collapse: collapse; font-size: 14px; background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid #e0ded8; }
+  th { background: #1a3a5c; color: #fff; padding: 12px 16px; text-align: left; font-weight: 500; font-size: 13px; }
+  td { padding: 11px 16px; border-bottom: 1px solid #f0ede8; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #faf9f7; }
+  .tag-in { background: #eaf3de; color: #27500a; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+  .tag-out { background: #fcebeb; color: #791f1f; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+  .tag-pend { background: #faeeda; color: #633806; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+
+  /* ---- OPEN QUESTIONS ---- */
+  .questions-grid { display: grid; gap: 14px; }
+  .q-card { background: #fff; border: 1px solid #e0ded8; border-radius: 10px; padding: 16px 20px; display: flex; gap: 14px; align-items: flex-start; }
+  .q-num { min-width: 28px; height: 28px; background: #1a3a5c; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .q-body h4 { font-size: 14px; font-weight: 600; color: #1a3a5c; margin-bottom: 4px; }
+  .q-body p { font-size: 13px; color: #6b6b68; margin: 0; line-height: 1.5; }
+  .q-area { font-size: 11px; font-weight: 600; color: #9c9a92; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+
+  /* ---- SPREADSHEET MODEL ---- */
+  .sheet-tabs { display: flex; gap: 4px; margin-bottom: 0; }
+  .sheet-tab { padding: 8px 18px; border-radius: 8px 8px 0 0; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid #e0ded8; border-bottom: none; background: #f5f4f0; color: #6b6b68; }
+  .sheet-tab.active { background: #fff; color: #1a3a5c; }
+  .sheet-body { background: #fff; border: 1px solid #e0ded8; border-radius: 0 10px 10px 10px; overflow: hidden; }
+  .sheet-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .sheet-table th { background: #1a3a5c; color: #fff; padding: 8px 12px; text-align: left; font-weight: 500; font-size: 11px; white-space: nowrap; }
+  .sheet-table td { padding: 8px 12px; border-bottom: 1px solid #f0ede8; white-space: nowrap; }
+  .sheet-table td.required { color: #a32d2d; font-weight: 600; }
+  .sheet-table td.optional { color: #3b6d11; }
+  .sheet-table td.example { color: #185fa5; font-family: monospace; font-size: 11px; }
+  .sheet-table tr:nth-child(even) td { background: #faf9f7; }
+
+  /* ---- FOOTER ---- */
+  .footer { border-top: 1px solid #e0ded8; padding-top: 24px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #9c9a92; }
+
+  @media print {
+    body { background: #fff; }
+    .page { padding: 20px; }
+    .header { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Sistema De-Para — Integração SEED-PR com SGP/MEC</h1>
+  <p>Escopo de projeto · Piloto Campo Largo · Ano letivo 2026 · API CMDE 2.0</p>
+  <div class="header-badges">
+    <span class="badge">Campo Largo — Piloto</span>
+    <span class="badge">API CMDE 2.0</span>
+    <span class="badge">Autorização estadual/municipal</span>
+    <span class="badge">Portal De-Para</span>
+    <span class="badge">Pré-reunião de definição</span>
+  </div>
+</div>
+
+<!-- SEÇÃO 1: O QUE É ESSE SISTEMA -->
+<div class="section">
+  <div class="section-title">1. O que é esse sistema?</div>
+  <p>O <strong>Ministério da Educação (MEC)</strong> criou o <em>Sistema Gestão Presente (SGP)</em> para receber dados de todos os alunos das redes de ensino brasileiras: quem está matriculado, em qual turma, em qual escola, e com que frequência vai às aulas. Esses dados alimentam políticas públicas, entre elas o programa <em>Pé-de-Meia</em>.</p>
+  <p>A <strong>SEED-PR</strong> precisa enviar os dados de Campo Largo ao MEC. O problema: os dados estão espalhados — o sistema estadual (SERE) tem dados de alunos, mas as turmas, profissionais e frequências são gerenciadas pela própria prefeitura, e podem estar desatualizadas ou incorretas.</p>
+  <p>O <strong>Portal De-Para</strong> é a solução: um sistema central que puxa os dados do SERE, permite que a prefeitura de Campo Largo revise e complemente os dados, e depois envia tudo automaticamente para o SGP/MEC.</p>
+  <p><strong>Mecanismo chave (novo na API 2.0):</strong> A prefeitura de Campo Largo assina um Termo de Autorização direto no SGP. Com isso, a SEED passa a operar em nome do município na API, usando um identificador especial (<code>X-CODIGO-ENTIDADE</code>) em cada requisição. <em>Campo Largo não precisa de credenciais de API próprias.</em></p>
+</div>
+
+<!-- SEÇÃO 2: MAPA DO SISTEMA -->
+<div class="section">
+  <div class="section-title">2. Mapa do sistema — quem são os atores?</div>
+  <div class="system-map">
+    <div class="map-grid">
+      <!-- Coluna esquerda: Fontes -->
+      <div class="map-col">
+        <div class="actor-box box-purple">
+          <h3>🗄 SERE</h3>
+          <p>Banco de dados oficial do estado (PostgreSQL). Contém matrículas, alunos, cursos e estabelecimentos. <strong>Fonte primária</strong> de dados dos alunos.</p>
+        </div>
+        <div class="arrow-center">↓</div>
+        <div class="actor-box box-gray">
+          <h3>⚙ Script de extração</h3>
+          <p>Script Python automático que lê o SERE, filtra por Campo Largo e carrega no banco de trabalho do Portal.</p>
+        </div>
+        <div class="arrow-center" style="font-size:28px">→</div>
+      </div>
+
+      <!-- Coluna central: Portal -->
+      <div class="center-col">
+        <div class="portal-box">
+          <h3>Portal De-Para — SEED-PR</h3>
+          <div class="portal-inner">
+            <p><strong>Banco de trabalho</strong><br>SQL Server PROJETO_PDM_HML<br>Dados originais + dados validados</p>
+          </div>
+          <div class="portal-inner" style="margin-top:8px">
+            <p><strong>Interface web</strong><br>Consulta, validação e correção<br>de dados por escola</p>
+          </div>
+          <div class="portal-inner" style="margin-top:8px">
+            <p><strong>Motor de envio</strong><br>Scripts Python que enviam à API<br>na ordem hierárquica correta</p>
+          </div>
+          <div class="arrow-center" style="padding:12px 0">↓</div>
+          <div style="text-align:center">
+            <span class="header-badge-green">X-CODIGO-ENTIDADE: Campo Largo</span>
+          </div>
+        </div>
+        <div class="arrow-center" style="font-size:28px; padding-top:12px">↓</div>
+        <div class="actor-box box-green" style="text-align:center">
+          <h3>🏛 SGP / API CMDE 2.0</h3>
+          <p>Sistema do Ministério da Educação. Recebe dados e alimenta políticas como Pé-de-Meia.</p>
+        </div>
+      </div>
+
+      <!-- Coluna direita: Município -->
+      <div class="map-col">
+        <div class="arrow-h" style="justify-content:flex-start">
+          <span>←</span><span>valida e corrige</span>
+        </div>
+        <div class="actor-box box-amber">
+          <h3>🏙 Gestor — Campo Largo</h3>
+          <p>Acessa o portal, revisa os dados pré-carregados, corrige inconsistências e confirma o envio ao MEC.</p>
+        </div>
+        <div style="margin-top:16px" class="actor-box box-amber">
+          <h3>📋 Planilhas municipais</h3>
+          <p>O município preenche planilhas-modelo (disponibilizadas pela SEED) com dados que não estão no SERE: <strong>Profissionais</strong>, <strong>turmas extras</strong> e <strong>frequências manuais</strong>.</p>
+        </div>
+        <div style="margin-top:16px" class="actor-box box-gray">
+          <h3>📝 Termo de Autorização</h3>
+          <p>Campo Largo assina o termo de autorização <em>no próprio SGP</em>. Com isso libera a SEED para enviar dados em nome do município, sem precisar de API key própria.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEÇÃO 3: FLUXO DO PROCESSO -->
+<div class="section">
+  <div class="section-title">3. Fluxo do processo — passo a passo</div>
+  <div class="section-subtitle">Como os dados percorrem o sistema, do SERE ao SGP/MEC</div>
+  <div class="flow-container">
+    <div class="flow-header">
+      <div class="flow-col-header fh-seed">SEED / CODIS</div>
+      <div class="flow-col-header fh-portal">Portal De-Para (Sistema)</div>
+      <div class="flow-col-header fh-mun">Campo Largo (Município)</div>
+    </div>
+    <div class="flow-rows">
+
+      <div class="flow-row">
+        <div class="flow-cell seed">
+          <div class="step-card s-seed">
+            <div class="step-num">Etapa 1</div>
+            <h4>Extração do SERE</h4>
+            <p>Script Python lê os dados de alunos, matrículas e estabelecimentos de Campo Largo no SERE e carrega no banco de trabalho.</p>
+          </div>
+        </div>
+        <div class="flow-cell portal"></div>
+        <div class="flow-cell mun"></div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-cell seed">
+          <div class="step-card s-seed">
+            <div class="step-num">Etapa 2</div>
+            <h4>Filtragem e elegibilidade</h4>
+            <p>O sistema separa apenas matrículas com etapa de ensino válida na API 2.0, descartando o que não pode ser enviado.</p>
+          </div>
+        </div>
+        <div class="flow-cell portal"></div>
+        <div class="flow-cell mun"></div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-cell seed"></div>
+        <div class="flow-cell portal">
+          <div class="step-card s-portal">
+            <div class="step-num">Etapa 3</div>
+            <h4>Abertura do ciclo de validação</h4>
+            <p>SEED abre um ciclo para Campo Largo 2026. O portal disponibiliza os dados e os modelos de planilha para o município.</p>
+          </div>
+        </div>
+        <div class="flow-cell mun"></div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-cell seed"></div>
+        <div class="flow-cell portal"></div>
+        <div class="flow-cell mun">
+          <div class="step-card s-mun">
+            <div class="step-num">Etapa 4</div>
+            <h4>Município acessa o portal</h4>
+            <p>Gestor de Campo Largo recebe acesso e visualiza todos os alunos, turmas e matrículas pré-carregados do SERE.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-cell seed"></div>
+        <div class="flow-cell portal"></div>
+        <div class="flow-cell mun">
+          <div class="step-card s-mun">
+            <div class="step-num">Etapa 5</div>
+            <h4>Preenchimento das planilhas</h4>
+            <p>Município baixa e preenche as planilhas-modelo: <strong>Profissionais</strong>, <strong>Turmas extras</strong> (não existentes no SERE) e <strong>Frequências</strong> das escolas sem RCO.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-cell seed"></div>
+        <div class="flow-cell portal"></div>
+        <div class="flow-cell mun">
+          <div class="step-card s-mun">
+            <div class="step-num">Etapa 6</div>
+            <h4>Upload e correção de dados</h4>
+            <p>Município faz upload das planilhas e corrige os dados de alunos diretamente no portal (CPF, nome, data de nascimento etc.).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-cell seed"></div>
+        <div class="flow-cell portal">
+          <div class="step-card s-portal">
+            <div class="step-num">Etapa 7</div>
+            <h4>Validação automática</h4>
+            <p>O sistema valida automaticamente CPF, campos obrigatórios e domínios da API. Inconsistências são marcadas em vermelho diretamente na tela.</p>
+          </div>
+        </div>
+        <div class="flow-cell mun"></div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-cell seed"></div>
+        <div class="flow-cell portal"></div>
+        <div class="flow-cell mun">
+          <div class="step-card s-mun">
+            <div class="step-num">Etapa 8</div>
+            <h4>Correção das inconsistências</h4>
+            <p>Município resolve os erros apontados, substituindo ou confirmando cada dado. O portal não avança enquanto houver pendências críticas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-cell seed"></div>
+        <div class="flow-cell portal"></div>
+        <div class="flow-cell mun">
+          <div class="step-card s-mun">
+            <div class="step-num">Etapa 9</div>
+            <h4>Confirmação pelo município</h4>
+            <p>Gestor confirma formalmente que os dados estão corretos e submete o ciclo para análise da SEED.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-cell seed">
+          <div class="step-card s-seed">
+            <div class="step-num">Etapa 10</div>
+            <h4>Homologação pela SEED</h4>
+            <p>Analista da SEED revisa o pacote de dados confirmado pelo município e libera para envio ao SGP.</p>
+          </div>
+        </div>
+        <div class="flow-cell portal"></div>
+        <div class="flow-cell mun"></div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-cell seed"></div>
+        <div class="flow-cell portal">
+          <div class="step-card s-portal">
+            <div class="step-num">Etapa 11</div>
+            <h4>Envio à API CMDE 2.0</h4>
+            <p>Scripts enviam na ordem hierárquica: <strong>Escolas → Turmas → Estudantes + matrículas → Frequências → Desfechos</strong>. Cada requisição usa o cabeçalho <code>X-CODIGO-ENTIDADE</code> do município.</p>
+          </div>
+        </div>
+        <div class="flow-cell mun"></div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-cell seed">
+          <div class="step-card s-green">
+            <div class="step-num">Etapa 12</div>
+            <h4>Monitoramento e relatório</h4>
+            <p>Portal exibe status de cada lote enviado. Erros são registrados e podem ser reprocessados. SEED confirma a conclusão do envio.</p>
+          </div>
+        </div>
+        <div class="flow-cell portal"></div>
+        <div class="flow-cell mun"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SEÇÃO 4: MÚLTIPLAS MATRÍCULAS -->
+<div class="section">
+  <div class="section-title">4. Regra das matrículas — o que muda na API 2.0?</div>
+  <p>Na versão 2.0 do SGP, um aluno pode ter <strong>múltiplas matrículas ativas simultaneamente</strong> — cada uma vinculada a uma turma diferente. Isso espelha a realidade: o mesmo aluno pode estar matriculado no ensino regular e em uma atividade de reforço ou AEE ao mesmo tempo.</p>
+  <table style="margin-top:16px">
+    <tr><th>Situação do aluno no SERE</th><th>O que fazemos na API 2.0</th></tr>
+    <tr><td>Matrícula no EF, EM ou EJA com etapa válida na API</td><td><span class="tag-in">ENVIA</span> — Todas as matrículas com etapa mapeável</td></tr>
+    <tr><td>Matrícula em curso complementar COM etapa válida (ex: AEE)</td><td><span class="tag-in">ENVIA</span> — A API 2.0 aceita; o SGP classifica a elegibilidade internamente</td></tr>
+    <tr><td>Matrícula em curso SEM etapa válida na API (ex: línguas, esporte)</td><td><span class="tag-out">NÃO ENVIA</span> — Não há campo no schema para esse tipo</td></tr>
+    <tr><td>Matrícula cancelada / excluída por erro no SERE</td><td><span class="tag-out">NÃO ENVIA</span> — Filtro de elegibilidade exclui automaticamente</td></tr>
+  </table>
+</div>
+
+<!-- SEÇÃO 5: PLANILHAS-MODELO -->
+<div class="section">
+  <div class="section-title">5. Modelo das planilhas — o que o município preenche</div>
+  <p>O município receberá <strong>3 planilhas-modelo</strong> com os campos exatos que precisam informar. Os campos em <span style="color:#a32d2d;font-weight:600">vermelho</span> são obrigatórios. Os campos em <span style="color:#3b6d11;font-weight:600">verde</span> são opcionais mas recomendados.</p>
+
+  <div class="sheet-tabs">
+    <div class="sheet-tab active">1. Profissionais</div>
+    <div class="sheet-tab">2. Turmas extras</div>
+    <div class="sheet-tab">3. Frequências manuais</div>
+  </div>
+  <div class="sheet-body">
+    <table class="sheet-table">
+      <tr>
+        <th>#</th><th>Campo na planilha</th><th>Campo na API</th><th>Tipo</th><th>Obrig.</th><th>Exemplo</th>
+      </tr>
+      <tr><td>1</td><td>CPF do Profissional</td><td>profissional_cpf</td><td>Texto 11 dígitos</td><td class="required">SIM</td><td class="example">12345678901</td></tr>
+      <tr><td>2</td><td>Nome Completo</td><td>profissional_nome</td><td>Texto</td><td class="required">SIM</td><td class="example">Maria Aparecida Silva</td></tr>
+      <tr><td>3</td><td>INEP da Escola</td><td>co_entidade</td><td>Número 8 dígitos</td><td class="required">SIM</td><td class="example">41234567</td></tr>
+      <tr><td>4</td><td>Função (código)</td><td>funcao_profissional</td><td>Código (tabela anexa)</td><td class="required">SIM</td><td class="example">2 — Professor</td></tr>
+      <tr><td>5</td><td>Tipo de Contrato</td><td>tipo_contrato</td><td>Código (tabela anexa)</td><td class="required">SIM</td><td class="example">1 — Estatutário</td></tr>
+      <tr><td>6</td><td>Data início do vínculo</td><td>data_inicio_vinculo</td><td>Data DD/MM/AAAA</td><td class="required">SIM</td><td class="example">01/02/2026</td></tr>
+      <tr><td>7</td><td>Formação académica (código)</td><td>formacao_academica</td><td>Código (tabela anexa)</td><td class="optional">NÃO</td><td class="example">3 — Superior completo</td></tr>
+      <tr><td>8</td><td>Nome Social</td><td>profissional_nome_social</td><td>Texto</td><td class="optional">NÃO</td><td class="example">(preencher se aplicável)</td></tr>
+    </table>
+  </div>
+  <p style="font-size:12px;color:#9c9a92;margin-top:8px">* Planilhas de Turmas extras e Frequências manuais seguem o mesmo modelo com campos do payload da API 2.0.</p>
+</div>
+
+<!-- SEÇÃO 6: ESCOPO DO PROJETO -->
+<div class="section">
+  <div class="section-title">6. Escopo do projeto — o que está e o que não está incluído</div>
+  <table>
+    <tr><th>Entregável</th><th>Status</th><th>Observação</th></tr>
+    <tr><td>Script de extração SERE → banco de trabalho</td><td><span class="tag-in">INCLUÍDO</span></td><td>Filtrado por Campo Largo e período 2026</td></tr>
+    <tr><td>Portal De-Para (interface web)</td><td><span class="tag-in">INCLUÍDO</span></td><td>Consulta, validação, upload de planilhas, envio</td></tr>
+    <tr><td>Banco de trabalho (SQL Server)</td><td><span class="tag-in">INCLUÍDO</span></td><td>Tabelas originais (sere_*) + validadas (val_*)</td></tr>
+    <tr><td>3 planilhas-modelo para o município</td><td><span class="tag-in">INCLUÍDO</span></td><td>Profissionais, turmas extras, frequências</td></tr>
+    <tr><td>Validação automática de campos</td><td><span class="tag-in">INCLUÍDO</span></td><td>CPF, domínios da API, campos obrigatórios</td></tr>
+    <tr><td>Motor de envio à API CMDE 2.0</td><td><span class="tag-in">INCLUÍDO</span></td><td>Com X-CODIGO-ENTIDADE por município</td></tr>
+    <tr><td>Monitoramento de lotes e log de erros</td><td><span class="tag-in">INCLUÍDO</span></td><td>Dashboard de status no portal</td></tr>
+    <tr><td>Suporte a múltiplos municípios</td><td><span class="tag-pend">FASE 2</span></td><td>Piloto exclusivo em Campo Largo</td></tr>
+    <tr><td>Correção de dados de 2025</td><td><span class="tag-out">FORA</span></td><td>Sistema novo, foco em 2026</td></tr>
+    <tr><td>Integração direta com sistema da prefeitura</td><td><span class="tag-out">FORA</span></td><td>Planilha é o canal de entrada do município</td></tr>
+    <tr><td>App mobile para gestores</td><td><span class="tag-out">FORA</span></td><td>Portal web responsivo atende a necessidade</td></tr>
+  </table>
+</div>
+
+<!-- SEÇÃO 7: PONTOS DE DÚVIDA PARA A REUNIÃO -->
+<div class="section">
+  <div class="section-title">7. Pontos em aberto — itens para definição na reunião</div>
+  <div class="questions-grid">
+
+    <div class="q-card">
+      <div class="q-num">1</div>
+      <div class="q-body">
+        <div class="q-area">Autorização / API</div>
+        <h4>Campo Largo já assinou o Termo de Autorização no SGP?</h4>
+        <p>Sem o termo assinado pelo município, a SEED não pode enviar dados em nome de Campo Largo. Precisa ser no nível <strong>Completa</strong> (permite_escrita = true). Quem aciona o município para assinar?</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">2</div>
+      <div class="q-body">
+        <div class="q-area">Escopo / Dados</div>
+        <h4>Quais escolas de Campo Largo entram no piloto?</h4>
+        <p>Todas as escolas municipais? Apenas algumas? Há escolas privadas conveniadas que também precisam ser enviadas?</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">3</div>
+      <div class="q-body">
+        <div class="q-area">Pessoas / Responsabilidade</div>
+        <h4>Quem é o responsável técnico pelo lado do município?</h4>
+        <p>Precisamos de um nome, cargo, e-mail e telefone do gestor de Campo Largo que irá acessar o portal e preencher as planilhas. Quem define isso?</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">4</div>
+      <div class="q-body">
+        <div class="q-area">Prazo</div>
+        <h4>Qual o prazo limite para os dados de 2026 estarem no SGP?</h4>
+        <p>O MEC tem janelas de envio mensais. Qual o primeiro mês-alvo? Março/2026? Abril? Definir prazo retroativo para os dados já existentes.</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">5</div>
+      <div class="q-body">
+        <div class="q-area">Frequência</div>
+        <h4>Quais escolas de Campo Largo usam o RCO?</h4>
+        <p>Para escolas com RCO, a frequência pode ser extraída automaticamente. Para as demais, o município precisa preencher a planilha de frequências manualmente. Precisamos levantar isso escola por escola.</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">6</div>
+      <div class="q-body">
+        <div class="q-area">Dados / SERE</div>
+        <h4>As turmas de Campo Largo estão no SERE?</h4>
+        <p>Se sim, podemos pre-carregar. Se não (escola gerencia no sistema local), o município terá de criar todas as turmas via planilha — o que aumenta o esforço. Qual a situação atual?</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">7</div>
+      <div class="q-body">
+        <div class="q-area">Matrículas / Regras</div>
+        <h4>Quais modalidades/cursos de Campo Largo devem ou não ser enviados?</h4>
+        <p>Com a API 2.0 aceitando múltiplas matrículas, precisamos revisar o catálogo de exclusão. Cursos de língua e esporte não têm etapa mapeável na API — confirmar com DPGE quais outros cursos seguem a mesma regra.</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">8</div>
+      <div class="q-body">
+        <div class="q-area">Processo</div>
+        <h4>O envio será mensal (contínuo) ou apenas carga inicial?</h4>
+        <p>A API 2.0 exige atualização mensal das frequências. O Portal De-Para precisa ser operado mensalmente ou apenas uma vez? Definir se o processo é periódico ou pontual para 2026.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>SEED-PR / CODIS — Projeto CMDE 2.0 — Campo Largo 2026</span>
+  <span>Documento de pré-reunião · Versão preliminar</span>
+</div>
+
+</div>
+</body>
+</html>
