@@ -178,7 +178,7 @@ table.scope tr:nth-child(even) td{background:#fafbfd}
       <div style="text-align:center;color:#a78bfa;font-size:20px">↓</div>
       <div class="actor a-gray">
         <h3>⚙ Script de extração</h3>
-        <p>Python — lê SERE, filtra SJP 2026, carrega no banco de trabalho do NEXO.</p>
+        <p>Python — lê SERE, filtra Município 2026, carrega no banco de trabalho do NEXO.</p>
       </div>
       <div style="text-align:center;font-size:20px;color:#93c5fd">→</div>
     </div>
@@ -190,7 +190,7 @@ table.scope tr:nth-child(even) td{background:#fafbfd}
         <div class="hub-inner" style="margin-top:6px"><p><strong>Interface web</strong><br>Consulta, validação, uploads, monitoramento</p></div>
         <div class="hub-inner" style="margin-top:6px"><p><strong>Motor de envio</strong><br>Scripts Python — ordem hierárquica da API</p></div>
         <div class="arrow-v" style="padding:10px 0">↓</div>
-        <div class="token-badge">X-CODIGO-ENTIDADE: SJP</div>
+        <div class="token-badge">X-CODIGO-ENTIDADE: Município</div>
       </div>
       <div class="arrow-v" style="font-size:26px">↓</div>
       <div class="actor a-green" style="text-align:center;width:100%">
@@ -201,7 +201,7 @@ table.scope tr:nth-child(even) td{background:#fafbfd}
     <div class="map-col">
       <div style="font-size:12px;color:#9ca3af;text-align:center;padding:4px 0">← valida e corrige</div>
       <div class="actor a-amber">
-        <h3>🏙 Gestor — SJP</h3>
+        <h3>🏙 Gestor — Município</h3>
         <p>Acessa o NEXO, revisa dados pré-carregados, corrige inconsistências e confirma envio.</p>
       </div>
       <div class="actor a-amber">
@@ -210,7 +210,7 @@ table.scope tr:nth-child(even) td{background:#fafbfd}
       </div>
       <div class="actor a-gray">
         <h3>📝 Termo de Autorização</h3>
-        <p>SJP assina no próprio SGP/MEC. Libera a SEED para enviar em nome do município.</p>
+        <p>Município assina no próprio SGP/MEC. Libera a SEED para enviar em nome do município.</p>
       </div>
     </div>
   </div>
@@ -278,7 +278,7 @@ table.scope tr:nth-child(even) td{background:#fafbfd}
     </div>
 
     <div class="proc-row">
-      <div class="proc-cell pc-seed"><div class="step-card sc-seed"><div class="step-num">Etapa 1</div><h4>Extração do SERE</h4><p>Script Python lê dados de SJP 2026 (alunos, matrículas, turmas, estabelecimentos) e carrega no banco de trabalho.</p></div></div>
+      <div class="proc-cell pc-seed"><div class="step-card sc-seed"><div class="step-num">Etapa 1</div><h4>Extração do SERE</h4><p>Script Python lê dados de Município 2026 (alunos, matrículas, turmas, estabelecimentos) e carrega no banco de trabalho.</p></div></div>
       <div class="proc-cell pc-nexo"></div><div class="proc-cell pc-mun"></div>
     </div>
     <div class="proc-row">
@@ -288,12 +288,12 @@ table.scope tr:nth-child(even) td{background:#fafbfd}
     </div>
     <div class="proc-row">
       <div class="proc-cell pc-seed"></div>
-      <div class="proc-cell pc-nexo"><div class="step-card sc-nexo"><div class="step-num">Etapa 3</div><h4>Abertura do ciclo de validação</h4><p>SEED abre ciclo 2026 para SJP. Portal disponibiliza dados e modelos de planilha para download.</p></div></div>
+      <div class="proc-cell pc-nexo"><div class="step-card sc-nexo"><div class="step-num">Etapa 3</div><h4>Abertura do ciclo de validação</h4><p>SEED abre ciclo 2026 para Município. Portal disponibiliza dados e modelos de planilha para download.</p></div></div>
       <div class="proc-cell pc-mun"></div>
     </div>
     <div class="proc-row">
       <div class="proc-cell pc-seed"></div><div class="proc-cell pc-nexo"></div>
-      <div class="proc-cell pc-mun"><div class="step-card sc-mun"><div class="step-num">Etapa 4</div><h4>Município acessa o NEXO</h4><p>Gestor de SJP recebe credenciais de acesso e visualiza todos os alunos, turmas e matrículas pré-carregados do SERE.</p></div></div>
+      <div class="proc-cell pc-mun"><div class="step-card sc-mun"><div class="step-num">Etapa 4</div><h4>Município acessa o NEXO</h4><p>Gestor de Município recebe credenciais de acesso e visualiza todos os alunos, turmas e matrículas pré-carregados do SERE.</p></div></div>
     </div>
     <div class="proc-row">
       <div class="proc-cell pc-seed"></div><div class="proc-cell pc-nexo"></div>
@@ -322,7 +322,7 @@ table.scope tr:nth-child(even) td{background:#fafbfd}
     </div>
     <div class="proc-row">
       <div class="proc-cell pc-seed"></div>
-      <div class="proc-cell pc-nexo"><div class="step-card sc-nexo"><div class="step-num">Etapa 11</div><h4>Envio à API CMDE 2.0</h4><p>Scripts enviam em cascata: <strong>Escolas → Turmas → Comp. Curriculares → Estudantes + Matrículas → Profissionais → Frequências → Avaliações</strong>. Cabeçalho <code>X-CODIGO-ENTIDADE</code> identifica SJP.</p></div></div>
+      <div class="proc-cell pc-nexo"><div class="step-card sc-nexo"><div class="step-num">Etapa 11</div><h4>Envio à API CMDE 2.0</h4><p>Scripts enviam em cascata: <strong>Escolas → Turmas → Comp. Curriculares → Estudantes + Matrículas → Profissionais → Frequências → Avaliações</strong>. Cabeçalho <code>X-CODIGO-ENTIDADE</code> identifica Município.</p></div></div>
       <div class="proc-cell pc-mun"></div>
     </div>
     <div class="proc-row">
@@ -356,9 +356,9 @@ table.scope tr:nth-child(even) td{background:#fafbfd}
     <tr><td>4</td><td>SITUAÇÃO DE FUNCIONAMENTO</td><td>situacao_funcionamento_instituicao</td><td>Código</td><td class="req">★</td><td class="ex">1</td><td class="dom">1-Em funcionamento 2-Extinta 3-Paralisada</td></tr>
     <tr><td>5</td><td>CNPJ DA SECRETARIA</td><td>cnpj_secretaria_educacao</td><td>14 dígitos</td><td class="req">★</td><td class="ex">12345678000190</td><td></td></tr>
     <tr><td>6</td><td>TELEFONE</td><td>instituicao_telefone</td><td>Texto</td><td class="opt">◎</td><td class="ex">(41)99999-0000</td><td></td></tr>
-    <tr><td>7</td><td>E-MAIL</td><td>instituicao_e_mail</td><td>E-mail</td><td class="opt">◎</td><td class="ex">escola@sjp.pr.gov.br</td><td></td></tr>
+    <tr><td>7</td><td>E-MAIL</td><td>instituicao_e_mail</td><td>E-mail</td><td class="opt">◎</td><td class="ex">escola@Município.pr.gov.br</td><td></td></tr>
     <tr><td>8</td><td>UF</td><td>co_uf_res_entidade</td><td>2 letras</td><td class="req">★</td><td class="ex">PR</td><td></td></tr>
-    <tr><td>9</td><td>MUNICÍPIO (código IBGE)</td><td>co_municipio_entidade</td><td>7 dígitos</td><td class="req">★</td><td class="ex">4125506</td><td class="dom">SJP = 4125506</td></tr>
+    <tr><td>9</td><td>MUNICÍPIO (código IBGE)</td><td>co_municipio_entidade</td><td>7 dígitos</td><td class="req">★</td><td class="ex">4125506</td><td class="dom">Município = 4125506</td></tr>
     <tr><td>10</td><td>LOGRADOURO</td><td>instituicao_ds_logradouro_res</td><td>Texto</td><td class="opt">◎</td><td class="ex">Rua das Flores</td><td></td></tr>
     <tr><td>11</td><td>NÚMERO</td><td>instituicao_nu_endereco_res</td><td>Texto</td><td class="opt">◎</td><td class="ex">123</td><td></td></tr>
     <tr><td>12</td><td>BAIRRO</td><td>instituicao_bairro_res</td><td>Texto</td><td class="opt">◎</td><td class="ex">Centro</td><td></td></tr>
@@ -428,7 +428,7 @@ table.scope tr:nth-child(even) td{background:#fafbfd}
     <tr><td>18</td><td>DATA INÍCIO PERÍODO LETIVO</td><td>data_inicio_periodo_letivo</td><td>DD/MM/AAAA</td><td class="req">★</td><td class="ex">03/02/2026</td><td></td></tr>
     <tr><td>19</td><td>TEMPO INTEGRAL</td><td>estudante_matricula_integral</td><td>Código</td><td class="req">★</td><td class="ex">2</td><td class="dom">0-Não inf. 1-Sim 2-Não</td></tr>
     <tr><td>20</td><td>APOIO PEDAGÓGICO</td><td>estudante_apoio_pedagogico</td><td>Código</td><td class="req">★</td><td class="ex">1</td><td class="dom">1-Não necessita 2-Necessita</td></tr>
-    <tr><td>21</td><td>CÓD. MATRÍCULA REDE</td><td>co_matricula_rede</td><td>Texto</td><td class="opt">◎</td><td class="ex">2026-SJP-001</td><td class="dom">Código interno do município</td></tr>
+    <tr><td>21</td><td>CÓD. MATRÍCULA REDE</td><td>co_matricula_rede</td><td>Texto</td><td class="opt">◎</td><td class="ex">2026-Município-001</td><td class="dom">Código interno do município</td></tr>
     </table>
   </div>
 
@@ -484,7 +484,7 @@ table.scope tr:nth-child(even) td{background:#fafbfd}
   <div class="section-title">6. Escopo do projeto</div>
   <table class="scope">
     <tr><th>Entregável</th><th>Status</th><th>Observação</th></tr>
-    <tr><td>Script de extração SERE → banco de trabalho</td><td><span class="tin">INCLUÍDO</span></td><td>Filtrado por SJP e período 2026</td></tr>
+    <tr><td>Script de extração SERE → banco de trabalho</td><td><span class="tin">INCLUÍDO</span></td><td>Filtrado por Município e período 2026</td></tr>
     <tr><td>Portal NEXO — interface web</td><td><span class="tin">INCLUÍDO</span></td><td>Consulta, validação, upload, monitoramento de envios</td></tr>
     <tr><td>Banco de trabalho (a definir)</td><td><span class="tin">INCLUÍDO</span></td><td>Tabelas sere_* (original) + val_* (validado) + id_sgp_* (retorno API)</td></tr>
     <tr><td>7 planilhas-modelo com campos completos da API 2.0</td><td><span class="tin">INCLUÍDO</span></td><td>Escolas, Turmas, Comp. Curriculares, Estudantes, Profissionais, Frequência, Av. Desempenho</td></tr>
@@ -503,12 +503,12 @@ table.scope tr:nth-child(even) td{background:#fafbfd}
 <div class="section">
   <div class="section-title">7. Pontos em aberto — definições necessárias na reunião</div>
   <div class="q-grid">
-    <div class="q-card"><div class="q-num">1</div><div class="q-body"><div class="q-area">Autorização / API</div><h4>SJP já assinou o Termo de Autorização no SGP?</h4><p>Sem o termo, a SEED não pode enviar dados em nome do município. A janela de Escolas e Estudantes encerra em 08/05/2026 — <strong>3 dias restantes</strong>. Quem aciona o município para assinar? É urgente.</p></div></div>
+    <div class="q-card"><div class="q-num">1</div><div class="q-body"><div class="q-area">Autorização / API</div><h4>Município já assinou o Termo de Autorização no SGP?</h4><p>Sem o termo, a SEED não pode enviar dados em nome do município. A janela de Escolas e Estudantes encerra em 08/05/2026 — <strong>3 dias restantes</strong>. Quem aciona o município para assinar? É urgente.</p></div></div>
     <div class="q-card"><div class="q-num">2</div><div class="q-body"><div class="q-area">Banco de dados</div><h4>Qual será o nome e ambiente do banco de trabalho do NEXO?</h4><p>Precisa ser definido o nome do banco SQL Server onde o NEXO armazenará os dados. Será um banco novo no ambiente existente ou um novo servidor?</p></div></div>
-    <div class="q-card"><div class="q-num">3</div><div class="q-body"><div class="q-area">Escopo / Dados</div><h4>Quais e quantas escolas municipais de SJP entram no piloto?</h4><p>Todas as escolas municipais? Apenas algumas? Há escolas privadas conveniadas? Qual é o total de alunos estimado para dimensionar o volume de envio?</p></div></div>
-    <div class="q-card"><div class="q-num">4</div><div class="q-body"><div class="q-area">Pessoas / Responsabilidade</div><h4>Quem é o responsável técnico pelo lado do município?</h4><p>Precisamos de nome, cargo, e-mail e telefone do gestor de SJP que irá operar o NEXO e preencher as planilhas. Quem faz o contato e define isso?</p></div></div>
-    <div class="q-card"><div class="q-num">5</div><div class="q-body"><div class="q-area">Frequência / RCO</div><h4>Quais escolas de SJP usam o RCO? Qual o percentual?</h4><p>Para escolas com RCO, a frequência é automática. Para as demais, o município preenche planilha manualmente. Precisamos mapear escola por escola.</p></div></div>
-    <div class="q-card"><div class="q-num">6</div><div class="q-body"><div class="q-area">Dados / Turmas</div><h4>As turmas de SJP 2026 estão cadastradas no SERE?</h4><p>Se sim, podem ser pré-carregadas. Se não, o município precisará preencher toda a planilha de turmas — aumentando significativamente o esforço inicial.</p></div></div>
+    <div class="q-card"><div class="q-num">3</div><div class="q-body"><div class="q-area">Escopo / Dados</div><h4>Quais e quantas escolas municipais de Município entram no piloto?</h4><p>Todas as escolas municipais? Apenas algumas? Há escolas privadas conveniadas? Qual é o total de alunos estimado para dimensionar o volume de envio?</p></div></div>
+    <div class="q-card"><div class="q-num">4</div><div class="q-body"><div class="q-area">Pessoas / Responsabilidade</div><h4>Quem é o responsável técnico pelo lado do município?</h4><p>Precisamos de nome, cargo, e-mail e telefone do gestor de Município que irá operar o NEXO e preencher as planilhas. Quem faz o contato e define isso?</p></div></div>
+    <div class="q-card"><div class="q-num">5</div><div class="q-body"><div class="q-area">Frequência / RCO</div><h4>Quais escolas de Município usam o RCO? Qual o percentual?</h4><p>Para escolas com RCO, a frequência é automática. Para as demais, o município preenche planilha manualmente. Precisamos mapear escola por escola.</p></div></div>
+    <div class="q-card"><div class="q-num">6</div><div class="q-body"><div class="q-area">Dados / Turmas</div><h4>As turmas de Município 2026 estão cadastradas no SERE?</h4><p>Se sim, podem ser pré-carregadas. Se não, o município precisará preencher toda a planilha de turmas — aumentando significativamente o esforço inicial.</p></div></div>
     <div class="q-card"><div class="q-num">7</div><div class="q-body"><div class="q-area">API / Prazo</div><h4>A URL da API CMDE 2.0 já está disponível para homologação?</h4><p>O último registro indica que a URL de homologação estava pendente. Precisamos confirmar a URL base e as credenciais para iniciar os testes.</p></div></div>
     <div class="q-card"><div class="q-num">8</div><div class="q-body"><div class="q-area">Processo / Periodicidade</div><h4>O envio ao SGP será mensal (contínuo) ou carga inicial única?</h4><p>A API 2.0 exige frequências mensais. O NEXO precisa ser operado todo mês? Ou o foco é uma carga retroativa de 2026 e depois ativação de um processo mensal automático?</p></div></div>
     <div class="q-card"><div class="q-num">9</div><div class="q-body"><div class="q-area">Matrículas / Regras</div><h4>Revisar catálogo de exclusão para múltiplas matrículas na API 2.0</h4><p>A API 2.0 aceita múltiplas matrículas ativas por aluno. O catálogo de exclusão precisa ser revisado: só excluir o que não tem etapa mapeável na API, não mais toda matrícula "complementar".</p></div></div>
