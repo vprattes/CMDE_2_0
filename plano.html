@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CMDE v2 — Documentação Técnica e Plano de Ação</title>
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --ink:#172033;
+      --muted:#5d6b82;
+      --line:#dbe3ef;
+      --blue:#1d4ed8;
+      --blue-2:#2563eb;
+      --cyan:#0891b2;
+      --green:#047857;
+      --amber:#b45309;
+      --red:#b91c1c;
+      --purple:#6d28d9;
+      --slate:#334155;
+      --soft-blue:#dbeafe;
+      --soft-cyan:#cffafe;
+      --soft-green:#d1fae5;
+      --soft-amber:#fef3c7;
+      --soft-purple:#ede9fe;
+      --soft-red:#fee2e2;
+      --soft-slate:#e2e8f0;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Segoe UI", Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.45;
+    }
+    .page{max-width:1220px;margin:0 auto;padding:28px}
+    .hero{
+      background:linear-gradient(135deg,#0f172a 0%,#1d4ed8 52%,#0891b2 100%);
+      color:#fff;border-radius:24px;padding:30px 32px;box-shadow:0 18px 45px rgba(15,23,42,.18);
+      position:relative;overflow:hidden;
+    }
+    .hero:after{content:"";position:absolute;right:-85px;top:-100px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.12)}
+    .hero:before{content:"";position:absolute;right:80px;bottom:-130px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.08)}
+    .hero h1{margin:0 0 10px;font-size:34px;line-height:1.08;letter-spacing:-.045em;max-width:960px}
+    .hero p{margin:0;max-width:930px;color:#e0f2fe;font-size:16px}
+    .hero .meta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+    .pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:700;background:rgba(255,255,255,.16);color:inherit;border:1px solid rgba(255,255,255,.22)}
+    .nav{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 0}
+    .nav a{color:#0f172a;text-decoration:none;background:#fff;border:1px solid var(--line);padding:9px 12px;border-radius:999px;font-size:13px;font-weight:700;box-shadow:0 6px 18px rgba(15,23,42,.05)}
+    .section{margin-top:22px}
+    .section h2{font-size:24px;margin:0 0 12px;letter-spacing:-.03em;color:#0f172a}
+    .section .lead{margin:-3px 0 14px;color:var(--muted);max-width:1020px}
+    .grid{display:grid;gap:18px;margin-top:18px}
+    .cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 10px 26px rgba(15,23,42,.06)}
+    .card h3{margin:0 0 10px;font-size:18px;letter-spacing:-.02em;color:#0f172a}.card h4{margin:14px 0 8px;font-size:14px;color:#0f172a;text-transform:uppercase;letter-spacing:.05em}
+    .card p{margin:0 0 10px;color:var(--muted)}.card p:last-child{margin-bottom:0}
+    .tag{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-weight:800;font-size:12px;margin:0 6px 6px 0;background:var(--soft-slate);color:#334155}
+    .tag.blue{background:var(--soft-blue);color:var(--blue)}.tag.green{background:var(--soft-green);color:var(--green)}.tag.amber{background:var(--soft-amber);color:var(--amber)}.tag.red{background:var(--soft-red);color:var(--red)}.tag.purple{background:var(--soft-purple);color:var(--purple)}.tag.cyan{background:var(--soft-cyan);color:var(--cyan)}
+    .note{border-radius:16px;padding:16px;border:1px solid var(--line);background:#fff;margin-top:14px}.note strong{color:#0f172a}.note.amber{background:#fffbeb;border-color:#fde68a}.note.red{background:#fff1f2;border-color:#fecdd3}.note.green{background:#ecfdf5;border-color:#bbf7d0}.note.blue{background:#eff6ff;border-color:#bfdbfe}
+    table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:#fff;font-size:14px}
+    th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{background:#f8fafc;color:#0f172a;font-size:13px;text-transform:uppercase;letter-spacing:.04em}tr:last-child td{border-bottom:0}td{color:#334155}code{background:#eef2ff;color:#3730a3;border-radius:6px;padding:2px 5px;font-size:.92em}.mono{font-family:Consolas,"Courier New",monospace}
+    .flow{display:flex;gap:12px;align-items:stretch;flex-wrap:wrap;margin:16px 0}.step{flex:1 1 145px;min-width:145px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;position:relative;box-shadow:0 8px 22px rgba(15,23,42,.05)}.step:after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:#64748b;font-weight:900}.step:last-child:after{display:none}.step .num{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--soft-blue);color:var(--blue);font-weight:900;font-size:13px;margin-bottom:8px}.step h4{margin:0 0 5px;font-size:14px;color:#0f172a}.step p{margin:0;color:var(--muted);font-size:13px}
+    .swimlane{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 10px 26px rgba(15,23,42,.06);margin-top:14px}.lane{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line)}.lane:last-child{border-bottom:0}.lane-title{padding:16px;background:#f8fafc;border-right:1px solid var(--line);font-weight:900;color:#0f172a}.lane-body{padding:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}.node{border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;min-width:130px;font-weight:800;color:#334155;text-align:center;box-shadow:0 4px 14px rgba(15,23,42,.04)}.node.blue{background:var(--soft-blue);border-color:#bfdbfe;color:var(--blue)}.node.green{background:var(--soft-green);border-color:#bbf7d0;color:var(--green)}.node.amber{background:var(--soft-amber);border-color:#fde68a;color:var(--amber)}.node.purple{background:var(--soft-purple);border-color:#ddd6fe;color:var(--purple)}.node.red{background:var(--soft-red);border-color:#fecdd3;color:var(--red)}.arrow{color:#64748b;font-weight:900;align-self:center}
+    .timeline{position:relative;margin:8px 0 0;padding-left:25px}.timeline:before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--line)}.titem{position:relative;margin:0 0 14px}.titem:before{content:"";position:absolute;left:-22px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px #dbeafe}.titem h4{margin:0 0 3px;font-size:15px;color:#0f172a}.titem p{margin:0;color:var(--muted);font-size:14px}
+    .kpi{display:grid;grid-template-columns:52px 1fr;gap:13px;align-items:start}.icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;background:#eff6ff;color:#1d4ed8}.kpi h3{margin:0 0 5px}.kpi p{margin:0;color:var(--muted)}
+    .checklist{list-style:none;margin:0;padding:0}.checklist li{padding:8px 0 8px 28px;border-bottom:1px dashed #e2e8f0;position:relative;color:#334155}.checklist li:last-child{border-bottom:0}.checklist li:before{content:"✓";position:absolute;left:0;top:8px;color:var(--green);font-weight:900}.warnlist li:before{content:"!";color:var(--amber)}
+    .footer{color:#64748b;text-align:center;font-size:12px;margin:28px 0 4px}
+    @media(max-width:900px){.cols-2,.cols-3,.cols-4{grid-template-columns:1fr}.lane{grid-template-columns:1fr}.lane-title{border-right:0;border-bottom:1px solid var(--line)}.step:after{display:none}.hero h1{font-size:28px}.page{padding:18px}}
+    @media print{body{background:#fff}.page{max-width:none;padding:0}.hero,.card,.swimlane,.step{box-shadow:none}.nav{display:none}.section{break-inside:avoid}.card{break-inside:avoid}.hero{border-radius:0}.page{font-size:12px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <h1>CMDE v2 — Documentação Técnica e Plano de Ação para Integração de Dados</h1>
+      <p>Estratégia de integração para envio, manutenção e atualização dos dados da rede estadual e das redes municipais autorizadas, com controle de autenticação, de-para, lotes, erros, reprocessamentos e governança dos identificadores SGP.</p>
+      <div class="meta">
+        <span class="pill">API CMDEB v2</span>
+        <span class="pill">Rede Estadual + Municípios</span>
+        <span class="pill">Lotes assíncronos</span>
+        <span class="pill">De-para municipal</span>
+        <span class="pill">Atualização contínua</span>
+      </div>
+    </header>
+
+    <nav class="nav" aria-label="Sumário">
+      <a href="#visao-geral">Visão geral</a>
+      <a href="#arquitetura">Arquitetura</a>
+      <a href="#depara">Estratégia de de-para</a>
+      <a href="#cadastros">Ordem dos cadastros</a>
+      <a href="#profissionais">Profissionais</a>
+      <a href="#atualizacao">Atualização contínua</a>
+      <a href="#lotes">Controle de lotes</a>
+      <a href="#plano">Plano de ação</a>
+    </nav>
+
+    <section id="visao-geral" class="section">
+      <h2>1. Visão geral</h2>
+      <p class="lead">A integração deve ser estruturada como um processo de sincronização de dados, não apenas como envio de arquivos JSON. O objetivo é manter uma base intermediária com os vínculos entre os dados locais e os identificadores gerados pelo SGP.</p>
+      <div class="grid cols-4">
+        <div class="card kpi"><div class="icon">🔐</div><div><h3>Autenticação</h3><p>Login com token Bearer, renovação por refresh token e uso do cabeçalho <code>X-CODIGO-ENTIDADE</code> para o município/rede autorizada.</p></div></div>
+        <div class="card kpi"><div class="icon">🏫</div><div><h3>Escopo</h3><p>Envio de dados da rede estadual e dos municípios autorizados, respeitando a autonomia e os padrões locais de cada município.</p></div></div>
+        <div class="card kpi"><div class="icon">🔁</div><div><h3>Sincronização</h3><p>Envios por evento, por competência mensal e por fechamento, com controle de hash para evitar reenvio desnecessário.</p></div></div>
+        <div class="card kpi"><div class="icon">📌</div><div><h3>Rastreabilidade</h3><p>Armazenamento do <code>lote_id</code>, status, erros, payload enviado, retorno processado e IDs SGP gerados.</p></div></div>
+      </div>
+
+      <div class="note amber">
+        <strong>Ponto de atenção:</strong> para municípios, o código do cabeçalho <code>X-CODIGO-ENTIDADE</code> não é o código IBGE. Ele deve ser o identificador gerado pela API após o termo/autorização da cidade. Esse vínculo precisa ficar cadastrado em tabela própria.
+      </div>
+    </section>
+
+    <section id="arquitetura" class="section">
+      <h2>2. Arquitetura proposta</h2>
+      <p class="lead">A camada intermediária deve padronizar dados de diferentes origens antes do envio ao CMDE v2.</p>
+      <div class="flow">
+        <div class="step"><div class="num">1</div><h4>Fontes</h4><p>SERE, RCO, bases estaduais, bases municipais e planilhas/layouts municipais homologados.</p></div>
+        <div class="step"><div class="num">2</div><h4>Staging</h4><p>Importação bruta, validação de campos mínimos e identificação de divergências.</p></div>
+        <div class="step"><div class="num">3</div><h4>De-para</h4><p>Conversão de códigos municipais/estaduais para domínios esperados pela API.</p></div>
+        <div class="step"><div class="num">4</div><h4>Payload</h4><p>Geração dos JSONs, hash de controle e fila de envio por tipo de lote.</p></div>
+        <div class="step"><div class="num">5</div><h4>API CMDE</h4><p>Envio assíncrono, consulta de lotes, erros e registros processados.</p></div>
+        <div class="step"><div class="num">6</div><h4>Retorno</h4><p>Gravação de IDs SGP, erros, correções e reprocessamentos.</p></div>
+      </div>
+
+      <div class="swimlane">
+        <div class="lane">
+          <div class="lane-title">Rede Estadual</div>
+          <div class="lane-body"><span class="node blue">SERE/RCO</span><span class="arrow">→</span><span class="node">Views oficiais</span><span class="arrow">→</span><span class="node green">Payload padronizado</span></div>
+        </div>
+        <div class="lane">
+          <div class="lane-title">Municípios</div>
+          <div class="lane-body"><span class="node amber">Sistemas locais</span><span class="arrow">→</span><span class="node amber">Layout mínimo</span><span class="arrow">→</span><span class="node purple">De-para municipal</span><span class="arrow">→</span><span class="node green">Payload padronizado</span></div>
+        </div>
+        <div class="lane">
+          <div class="lane-title">Controle CMDE</div>
+          <div class="lane-body"><span class="node">Fila</span><span class="arrow">→</span><span class="node blue">Envio</span><span class="arrow">→</span><span class="node red">Erros</span><span class="arrow">→</span><span class="node green">Reprocessamento</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="depara" class="section">
+      <h2>3. Estratégia de de-para municipal</h2>
+      <p class="lead">Como os municípios possuem autonomia, podem existir códigos locais, nomes de componentes, formas de avaliação e estruturas curriculares diferentes. A solução é criar uma camada de de-para por município, com versionamento e data de vigência.</p>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>O que precisa de de-para</h3>
+          <ul class="checklist">
+            <li>Componentes curriculares locais para o componente global da API.</li>
+            <li>Componente da instituição/turma para <code>id_sgp_componente_curricular</code>.</li>
+            <li>Etapas de ensino, modalidades, turnos e organização curricular.</li>
+            <li>Situações de matrícula, movimentações e desfechos.</li>
+            <li>Sistema de avaliação: nota numérica, conceito, menção, aprovado/reprovado etc.</li>
+            <li>Conversão de conceitos locais para o valor esperado em <code>desempenho_estudante_componente_curricular</code>.</li>
+            <li>Funções profissionais, vínculos, carga horária e formações.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Governança do de-para</h3>
+          <ul class="checklist">
+            <li>Uma tabela de de-para por município e por domínio.</li>
+            <li>Campos de vigência: início, fim, ano letivo e status ativo/inativo.</li>
+            <li>Responsável pela validação do de-para municipal.</li>
+            <li>Bloqueio de envio quando houver código local sem mapeamento.</li>
+            <li>Relatório de pendências para municípios antes do envio oficial.</li>
+            <li>Histórico de alteração para rastrear mudanças de regra.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h3>Modelo sugerido de tabelas de de-para</h3>
+        <table>
+          <thead><tr><th>Tabela</th><th>Chave local</th><th>Destino CMDE/SGP</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><td><code>depara_componente</code></td><td>município + código/nome disciplina local</td><td><code>co_componente_curricular</code> global + área</td><td>Resolve diferenças como “Matemática”, “Matemática Aplicada”, “Raciocínio Lógico”.</td></tr>
+            <tr><td><code>depara_componente_sgp</code></td><td>município + INEP + turma + componente local</td><td><code>id_sgp_componente_curricular</code></td><td>Usado para avaliação e vínculo docente.</td></tr>
+            <tr><td><code>depara_avaliacao</code></td><td>município + sistema/conceito local</td><td><code>sistema_avaliacao_desempenho</code> + valor padronizado</td><td>Ex.: A/B/C, MB/B/R/I, notas 0–10, aprovado/reprovado.</td></tr>
+            <tr><td><code>depara_etapa_turno</code></td><td>etapa/turno/modalidade local</td><td>domínio CMDE</td><td>Evita erro de etapa, modalidade ou turno divergente.</td></tr>
+            <tr><td><code>depara_profissional_funcao</code></td><td>cargo/função local</td><td>função/ocupação CMDE</td><td>Necessário para docentes, diretores, coordenação e demais profissionais.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note red">
+        <strong>Regra de segurança:</strong> nenhum lote municipal deve ser enviado se existirem códigos locais sem mapeamento aprovado. Esses casos devem entrar em pendência de saneamento antes da geração do payload.
+      </div>
+    </section>
+
+    <section id="cadastros" class="section">
+      <h2>4. Ordem ideal dos cadastros</h2>
+      <p class="lead">A ordem dos cadastros evita dependências quebradas. Primeiro são criadas as estruturas da rede; depois os vínculos de pessoas, matrículas, turmas, frequência e avaliação.</p>
+      <div class="flow">
+        <div class="step"><div class="num">1</div><h4>Município autorizado</h4><p>Guardar <code>X-CODIGO-ENTIDADE</code> gerado após termo.</p></div>
+        <div class="step"><div class="num">2</div><h4>Instituições</h4><p>INEPs e dados cadastrais da escola.</p></div>
+        <div class="step"><div class="num">3</div><h4>Componentes</h4><p>Componentes globais e componentes da instituição.</p></div>
+        <div class="step"><div class="num">4</div><h4>Turmas</h4><p>Cadastro/edição de turmas e vínculos de componentes.</p></div>
+        <div class="step"><div class="num">5</div><h4>Estudantes</h4><p>Cadastro do estudante e matrícula.</p></div>
+        <div class="step"><div class="num">6</div><h4>Enturmação</h4><p>Matrícula vinculada à turma correta.</p></div>
+      </div>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Estudantes, matrículas e turmas</h3>
+          <table>
+            <thead><tr><th>Objeto</th><th>ID local</th><th>ID SGP</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td>Estudante</td><td>CGM/CPF</td><td><code>id_sgp_estudante</code></td><td>Identifica a pessoa/aluno.</td></tr>
+              <tr><td>Matrícula</td><td>Nº matrícula + INEP + ano</td><td><code>id_sgp_matricula</code></td><td>Vínculo do estudante com escola/ano/etapa.</td></tr>
+              <tr><td>Turma</td><td>Código da turma local</td><td><code>id_sgp_turma</code></td><td>Turma onde a matrícula será enturmada.</td></tr>
+              <tr><td>Enturmação</td><td>Matrícula + turma</td><td>vínculo de enturmação</td><td>Relaciona a matrícula à turma.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Regras de movimentação</h3>
+          <ul class="checklist">
+            <li>Troca de turma no mesmo INEP: mantém a matrícula e edita a enturmação.</li>
+            <li>Troca de escola/INEP: encerra/movimenta a matrícula antiga e cria nova matrícula.</li>
+            <li>Frequência acompanha a matrícula e deve respeitar o período em cada INEP.</li>
+            <li>Avaliação acompanha a matrícula e o componente onde o resultado foi consolidado.</li>
+            <li>A turma é usada para identificar os componentes curriculares corretos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="frequencia-avaliacao" class="section">
+      <h2>5. Frequência e avaliação de desempenho</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Frequência</h3>
+          <p><span class="tag blue">Mensal</span><span class="tag green">Por matrícula</span></p>
+          <p>A frequência deve ser enviada por <code>id_sgp_matricula</code>, <code>ano_referencia</code> e <code>mes_referencia</code>.</p>
+          <div class="note blue"><strong>Transferência dentro do mês:</strong> se o estudante cursou 10 dias em um INEP e 20 dias em outro, enviar uma frequência para cada matrícula/INEP, considerando apenas as aulas/horas ofertadas e presenças daquele vínculo.</div>
+        </div>
+        <div class="card">
+          <h3>Avaliação de desempenho</h3>
+          <p><span class="tag purple">Consolidada</span><span class="tag green">Matrícula + componente</span></p>
+          <p>A avaliação não deve ser tratada como mensal. A chave prática é <code>id_sgp_matricula</code> + <code>id_sgp_componente_curricular</code> + <code>nu_ano_matricula</code>.</p>
+          <div class="note amber"><strong>Municípios:</strong> é obrigatório mapear o sistema de avaliação local para o domínio da API. Ex.: nota 0–10, conceito A/B/C, MB/B/R/I, aprovado/reprovado.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="profissionais" class="section">
+      <h2>6. Tratativa de profissionais</h2>
+      <p class="lead">Profissionais exigem um plano específico, especialmente para os municípios, pois a rede estadual pode possuir dados em bases próprias, mas os municípios podem manter esses dados em sistemas distintos ou ainda não disponibilizá-los no mesmo padrão.</p>
+
+      <div class="swimlane">
+        <div class="lane">
+          <div class="lane-title">Estrutura do profissional</div>
+          <div class="lane-body"><span class="node blue">Profissional</span><span class="arrow">→</span><span class="node green">Função na escola</span><span class="arrow">→</span><span class="node amber">Formação</span><span class="arrow">→</span><span class="node purple">Turma + componente</span></div>
+        </div>
+      </div>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Dados mínimos necessários dos municípios</h3>
+          <ul class="checklist">
+            <li>CPF, nome, data de nascimento e identificação do profissional.</li>
+            <li>INEP da instituição onde atua.</li>
+            <li>Função/cargo local e situação do vínculo.</li>
+            <li>Data de início e, quando houver, data de fim do vínculo.</li>
+            <li>Carga horária semanal.</li>
+            <li>Tipo de vínculo e regime de atuação.</li>
+            <li>Formação acadêmica, instituição, curso e ano de conclusão.</li>
+            <li>Para docente: turma, componente curricular e período de atuação.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Plano para obter dados municipais</h3>
+          <ul class="checklist">
+            <li>Definir layout mínimo oficial de profissionais em CSV/Excel/API.</li>
+            <li>Indicar ponto focal por município para validação dos dados.</li>
+            <li>Executar carga piloto com poucos municípios para validar campos e de-para.</li>
+            <li>Gerar relatório de pendências: CPF ausente, função sem de-para, formação incompleta, turma/componente sem mapeamento.</li>
+            <li>Permitir carga incremental mensal ou por evento, conforme maturidade do município.</li>
+            <li>Manter histórico de alterações de função, carga horária e alocação docente.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h3>Esquema de atualização de profissionais</h3>
+        <table>
+          <thead><tr><th>Evento</th><th>Ação esperada</th><th>Controle local</th></tr></thead>
+          <tbody>
+            <tr><td>Profissional novo</td><td>Cadastrar profissional.</td><td>Gerar/armazenar <code>id_sgp_profissional</code>.</td></tr>
+            <tr><td>Entrada em nova escola</td><td>Adicionar função/vínculo na instituição.</td><td>Armazenar <code>id_sgp_funcao</code>.</td></tr>
+            <tr><td>Saída da escola</td><td>Editar função, informar fim e situação inativa.</td><td>Preservar histórico do vínculo.</td></tr>
+            <tr><td>Mudança de carga horária ou função</td><td>Editar função/vínculo.</td><td>Gerar nova versão do vínculo ou atualizar vigência.</td></tr>
+            <tr><td>Nova formação</td><td>Adicionar formação.</td><td>Armazenar <code>id_formacao</code>.</td></tr>
+            <tr><td>Professor assume turma/componente</td><td>Vincular função à turma e componente.</td><td>Armazenar vínculo profissional-turma-componente.</td></tr>
+            <tr><td>Professor troca turma/componente</td><td>Editar/remover vínculo anterior e criar/alterar vínculo novo.</td><td>Controlar vigência e evitar duplicidade.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note red">
+        <strong>Risco principal:</strong> sem base municipal padronizada de profissionais, o envio desse módulo dependerá de coleta, saneamento e de-para prévios. Esse item deve ser tratado como frente própria dentro do projeto.
+      </div>
+    </section>
+
+    <section id="atualizacao" class="section">
+      <h2>7. Estratégia de atualização contínua</h2>
+      <p class="lead">A manutenção dos dados deve combinar atualização por evento, rotina mensal e rotina de fechamento.</p>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Rotina diária/evento</h3>
+          <ul class="checklist">
+            <li>Novo estudante</li>
+            <li>Alteração cadastral</li>
+            <li>Nova matrícula</li>
+            <li>Transferência</li>
+            <li>Troca de turma</li>
+            <li>Nova turma</li>
+            <li>Alteração de profissional</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Rotina mensal</h3>
+          <ul class="checklist">
+            <li>Fechamento de frequência</li>
+            <li>Identificação de faltantes</li>
+            <li>Correção de erros</li>
+            <li>Reenvio de pendências</li>
+            <li>Auditoria de transferidos no mês</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Rotina de fechamento</h3>
+          <ul class="checklist">
+            <li>Avaliação de desempenho</li>
+            <li>Aprovação/reprovação</li>
+            <li>Conclusões</li>
+            <li>Ajustes finais de matrícula</li>
+            <li>Validação de componentes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note green">
+        <strong>Recomendação técnica:</strong> calcular hash por tipo de payload. Só enviar novamente se houver alteração real no dado. Isso reduz reprocessamento e facilita auditoria.
+      </div>
+    </section>
+
+    <section id="lotes" class="section">
+      <h2>8. Controle de lotes, erros e reprocessamento</h2>
+      <p class="lead">Todo envio deve ser tratado como lote assíncrono, com status, erros e itens processados acompanhados até a conclusão.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Fluxo de lote</h3>
+          <div class="timeline">
+            <div class="titem"><h4>1. Gerar payload</h4><p>Validar campos obrigatórios, de-para e hash.</p></div>
+            <div class="titem"><h4>2. Enviar para API</h4><p>Registrar endpoint, tipo de arquivo, quantidade e <code>lote_id</code>.</p></div>
+            <div class="titem"><h4>3. Consultar status</h4><p>Acompanhar processamento até sucesso ou falha.</p></div>
+            <div class="titem"><h4>4. Consultar erros</h4><p>Capturar mensagem, item afetado e payload original.</p></div>
+            <div class="titem"><h4>5. Corrigir e reenviar</h4><p>Reprocessar apenas registros com falha, preservando histórico.</p></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Tabelas de controle recomendadas</h3>
+          <table>
+            <thead><tr><th>Tabela</th><th>Finalidade</th></tr></thead>
+            <tbody>
+              <tr><td><code>tb_sgp_lote</code></td><td>Controla lote, tipo, endpoint, status, ambiente, município e quantidade.</td></tr>
+              <tr><td><code>tb_sgp_lote_item</code></td><td>Controla item enviado, chave local, status, erro e reprocessamento.</td></tr>
+              <tr><td><code>tb_sgp_id_map</code></td><td>Mapeia chaves locais para IDs SGP.</td></tr>
+              <tr><td><code>tb_sgp_depara</code></td><td>Centraliza de-para por município, domínio e vigência.</td></tr>
+              <tr><td><code>tb_sgp_fila_envio</code></td><td>Organiza payloads pendentes, enviados, falhos e reprocessados.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="plano" class="section">
+      <h2>9. Plano de ação recomendado</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Fase 1 — Base técnica</h3>
+          <ul class="checklist">
+            <li>Configurar autenticação, refresh token e cabeçalho por entidade.</li>
+            <li>Criar banco intermediário de integração.</li>
+            <li>Criar tabelas de IDs SGP, lotes, erros e fila de envio.</li>
+            <li>Separar ambientes de homologação e produção.</li>
+          </ul>
+          <h3>Fase 2 — Dados estruturais</h3>
+          <ul class="checklist">
+            <li>Carregar instituições.</li>
+            <li>Carregar componentes curriculares.</li>
+            <li>Carregar turmas.</li>
+            <li>Validar componentes vinculados às turmas.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Fase 3 — Estudantes e matrículas</h3>
+          <ul class="checklist">
+            <li>Cadastrar estudantes e matrículas.</li>
+            <li>Guardar <code>id_sgp_estudante</code> e <code>id_sgp_matricula</code>.</li>
+            <li>Enturmar matrículas.</li>
+            <li>Tratar transferências e trocas de turma.</li>
+          </ul>
+          <h3>Fase 4 — Profissionais</h3>
+          <ul class="checklist">
+            <li>Definir layout mínimo municipal de profissionais.</li>
+            <li>Coletar e sanear bases municipais.</li>
+            <li>Criar de-para de funções, vínculos e formações.</li>
+            <li>Cadastrar profissionais, funções, formações e alocações docentes.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Fase 5 — Dados periódicos</h3>
+          <ul class="checklist">
+            <li>Enviar frequência mensal por matrícula.</li>
+            <li>Tratar transferências dentro do mês com frequência por matrícula/INEP.</li>
+            <li>Consultar faltantes e corrigir pendências.</li>
+            <li>Enviar avaliação de desempenho no fechamento/consolidação.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Fase 6 — Governança e operação</h3>
+          <ul class="checklist">
+            <li>Definir responsável por domínio: estudante, matrícula, profissional, componente, avaliação.</li>
+            <li>Validar de-para municipal antes dos envios.</li>
+            <li>Gerar painel de lotes, erros e pendências por rede/município.</li>
+            <li>Implantar rotina de reprocessamento e auditoria.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>10. Síntese operacional</h2>
+      <div class="card">
+        <table>
+          <thead><tr><th>Domínio</th><th>Periodicidade</th><th>Chave de controle</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><td>Instituições</td><td>Inicial + alteração</td><td>INEP</td><td>Base para todos os demais cadastros.</td></tr>
+            <tr><td>Componentes</td><td>Inicial + alteração curricular</td><td>INEP + componente</td><td>Exige de-para, principalmente nos municípios.</td></tr>
+            <tr><td>Turmas</td><td>Anual + alterações</td><td>INEP + código turma + ano</td><td>Necessária antes da enturmação.</td></tr>
+            <tr><td>Estudantes</td><td>Evento</td><td>CGM/CPF</td><td>Gera/usa <code>id_sgp_estudante</code>.</td></tr>
+            <tr><td>Matrículas</td><td>Evento</td><td>Matrícula + INEP + ano</td><td>Muda quando muda de escola/INEP.</td></tr>
+            <tr><td>Enturmação</td><td>Evento</td><td>Matrícula + turma</td><td>Muda quando troca de turma.</td></tr>
+            <tr><td>Frequência</td><td>Mensal</td><td>Matrícula + ano + mês</td><td>Separar por matrícula quando houver transferência no mês.</td></tr>
+            <tr><td>Avaliação</td><td>Fechamento/consolidação</td><td>Matrícula + componente + ano</td><td>Não tratar como mensal.</td></tr>
+            <tr><td>Profissionais</td><td>Evento + auditoria periódica</td><td>CPF + INEP + função</td><td>Frente específica para municípios devido à falta de base padronizada.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">Documento técnico-operacional para planejamento da integração CMDE v2 — rede estadual e redes municipais autorizadas.</footer>
+  </main>
+</body>
+</html>
