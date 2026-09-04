@@ -3,170 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CMDEB — Rede Estadual/PR — Status ao Vivo</title>
-<meta name="description" content="Status detalhado da integração SGP/CMDE com o SERE para a rede estadual do Paraná — dados atualizados em 03/09/2026.">
+<title>PDM2 — Rede Estadual — Status</title>
 <link rel="stylesheet" href="pdm2-status.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
 <body>
-
-<div class="topnav">
-  <div class="topnav-inner">
-    <a href="status.html" class="topnav-brand"><span class="dot"></span>PDM2 · STATUS AO VIVO</a>
-    <div class="topnav-links">
-      <a href="status.html">Visão geral</a>
-      <a href="curitiba.html">Curitiba</a>
-      <a href="campolargo.html">Campo Largo</a>
-      <a href="estadual.html" class="active">Rede Estadual</a>
-      <a href="index.html">Planejamento (NEXO)</a>
-    </div>
-  </div>
-</div>
+<div class="topnav"><div class="topnav-inner">
+  <a href="status.html" class="topnav-brand"><span class="dot"></span>PDM2 · STATUS</a>
+  <div class="topnav-links"><a href="status.html">Visão geral</a><a href="curitiba.html">Curitiba</a><a href="campolargo.html">Campo Largo</a><a href="estadual.html" class="active">Rede Estadual</a><a href="index.html">Planejamento (NEXO)</a></div>
+</div></div>
 
 <div class="header">
-  <div class="header-top">
-    <div class="inst-badges">
-      <div class="badge"><div class="badge-title">SEED</div><div class="badge-sub">Paraná</div><div class="badge-sub">Sec. Estado Educação</div></div>
-      <div class="badge"><div class="badge-title">MEC</div><div class="badge-sub">Ministério</div><div class="badge-sub">da Educação</div></div>
-      <div class="badge"><div class="badge-title">SGP v2</div><div class="badge-sub">API</div><div class="badge-sub">CMDE 2.0</div></div>
-    </div>
-    <div class="header-titles">
-      <h1>CONJUNTO MÍNIMO DE DADOS DA EDUCAÇÃO BÁSICA</h1>
-      <h2>CMDEB — Rede Estadual — Status ao Vivo 2026</h2>
-      <p>Sistema Gestão Presente — SGP v2 · coddependência 2 · sem co_entidade fixo (INEP por escola) · Ambiente de Produção</p>
-    </div>
-  </div>
-  <div class="header-bottom">
-    Integração da Rede Estadual de Ensino — Paraná
-    <span>Ano letivo 2026 · Escopo em construção</span>
-  </div>
+  <div class="header-top"><div class="header-titles">
+    <h1>PDM2 — INTEGRAÇÃO SGP/CMDE ↔ SERE</h1>
+    <h2>Rede Estadual do Paraná — Relatório de Status</h2>
+    <p>dependência 2 (estadual) · sem co_entidade fixo — cada aluno usa o INEP da própria escola</p>
+  </div></div>
+  <div class="header-bottom">Gerado em 04/09/2026 09:28</div>
 </div>
-<div class="fresh-bar">
-  <span class="fresh-pill"><span class="lv"></span>SERE (fonte) consultado ao vivo em 03/09/2026</span>
-  <span class="fresh-pill"><span class="st"></span>Espelho SGP (carga automática/Airflow): 28/08/2026</span>
-  <span class="fresh-pill"><span class="lv"></span>Profissionais: carga de hoje, 03/09/2026</span>
-</div>
-
 <div class="container">
-
-  <div class="nota">
-    <strong>Sobre o escopo desta página:</strong> ao contrário de Curitiba e Campo Largo, a rede estadual não tem um pipeline PDM2 completo e padronizado — os scripts existentes (<code>enviar_alunos_estadual.py</code>, <code>enviar_frequencia_estadual.py</code>) são direcionados a lotes específicos (ex.: matrículas de jan/fev, listas de CGM vindas de planilhas), não uma carga sistemática de toda a rede. Por isso vários módulos abaixo aparecem como "não disponível" — isso reflete o estágio real do projeto para esta rede, não uma limitação desta página.
-  </div>
-
-  <!-- NUMEROS PRINCIPAIS -->
-  <div class="section-title">Estudantes e Matrículas — SERE vs. SGP</div>
-  <div class="section-sub">SERE consultado ao vivo em 03/09/2026 · espelho do SGP da carga automática de 28/08/2026 (mais recente disponível)</div>
-  <div class="cards">
-    <div class="card c-azul"><div class="card-bar"></div><div class="card-body"><div class="card-num">913.462</div><div class="card-label">Alunos ativos no SERE</div><div class="card-sub">1.269.117 matrículas · 2.088 escolas · ao vivo</div></div></div>
-    <div class="card c-verde"><div class="card-bar"></div><div class="card-body"><div class="card-num">407.373</div><div class="card-label">Estudantes no SGP</div><div class="card-sub">carga de 28/08/2026</div></div></div>
-    <div class="card c-roxo"><div class="card-bar"></div><div class="card-body"><div class="card-num">371.679</div><div class="card-label">Matrículas "Em andamento" no SGP</div><div class="card-sub">ano 2026 · carga de 28/08</div></div></div>
-    <div class="card c-laranja"><div class="card-bar"></div><div class="card-body"><div class="card-num">44,6%</div><div class="card-label">Cobertura estimada</div><div class="card-sub">407.373 / 913.462 alunos SERE</div></div></div>
-  </div>
-  <div class="nota">
-    <strong>Como ler este número:</strong> a rede estadual é ordens de grandeza maior que os municípios (quase 1 milhão de alunos ativos no SERE, em 2.088 escolas). O espelho do SGP usado aqui vem de uma carga automática (via Airflow) datada de 28/08/2026 — 6 dias antes desta atualização — porque não há um processo de redownload sob demanda equivalente ao dos municípios para esta rede. A cobertura de ~44,6% é uma estimativa e pode não refletir o estado exato de hoje; não foi possível reconfirmar ao vivo dentro do tempo disponível.
-  </div>
-
-  <!-- ENTURMAÇÃO -->
-  <div class="section-title">Enturmação</div>
-  <div class="cards-3" style="display:grid;gap:16px;margin-bottom:16px">
-    <div class="card c-vermelho"><div class="card-bar"></div><div class="card-body"><div class="card-num">0</div><div class="card-label">Matrículas com turma vinculada</div><div class="card-sub">de 371.679 no espelho SGP (28/08)</div></div></div>
-    <div class="card c-vermelho"><div class="card-bar"></div><div class="card-body"><div class="card-num">0%</div><div class="card-label">Taxa de enturmação</div><div class="card-sub">processo ainda não iniciado</div></div></div>
-  </div>
-  <div class="nota nota-erro">
-    <strong>Achado relevante:</strong> nenhuma das 371.679 matrículas ativas no espelho local do SGP tem <code>id_sgp_turma</code> preenchido — diferente de Curitiba e Campo Largo, o processo de enturmação (<code>enturmar_pdm2.py --municipio</code>) ainda não foi adaptado/executado para a rede estadual (ela não tem um único <code>co_entidade</code> de rede — cada escola usa seu próprio INEP, o que exige ajustes no script genérico antes de rodar em escala).
-  </div>
-
-  <!-- COMPONENTES / FREQUENCIA / NOTAS -->
-  <div class="section-title">Componentes Curriculares, Frequência e Avaliação de Desempenho</div>
-  <div class="modulos">
-    <div class="modulo"><div class="mod-header" style="background:#8a8a86"><h4>Componentes Curriculares</h4><span>n/d</span></div><div class="mod-body">Nenhum script/DEPARA de componentes curriculares foi localizado com escopo estadual (coddependência 2) no repositório. Módulo ainda não iniciado para esta rede.</div></div>
-    <div class="modulo"><div class="mod-header" style="background:#8a8a86"><h4>Frequência Mensal</h4><span>n/d</span></div><div class="mod-body">A materialized view usada para Curitiba/Campo Largo (<code>seed.mv_pdm2_frequencia_mensal</code>) cobre apenas os municípios (420/690). Não existe hoje uma fonte equivalente, pronta para consulta, para a rede estadual — <code>enviar_frequencia_estadual.py</code> existe mas opera por lote/consulta pontual, não uma carga mensal padronizada.</div></div>
-    <div class="modulo"><div class="mod-header" style="background:#8a8a86"><h4>Avaliação de Desempenho</h4><span>n/d</span></div><div class="mod-body">Nenhum script de envio de notas com escopo estadual foi localizado — o único pipeline de avaliação de desempenho em produção (<code>enviar_avaliacoes_prod.py</code>) está parametrizado para Campo Largo.</div></div>
-  </div>
-
-  <!-- PROFISSIONAIS -->
-  <div class="section-title">Profissionais</div>
-  <div class="cards-3" style="display:grid;gap:16px">
-    <div class="card c-azul"><div class="card-bar"></div><div class="card-body"><div class="card-num">32.270</div><div class="card-label">Profissionais cadastrados</div><div class="card-sub">espelho local, carga de hoje 03/09/2026</div></div></div>
-  </div>
-  <div class="nota">Este é o módulo mais maduro da rede estadual dentro do PDM2 — a carga de profissionais roda com regularidade diária (última atualização: hoje), diferente dos demais módulos de estudantes.</div>
-
-  <!-- ESCOLAS -->
-  <div class="section-title">Escolas</div>
-  <div class="cards-3" style="display:grid;gap:16px">
-    <div class="card c-roxo"><div class="card-bar"></div><div class="card-body"><div class="card-num">2.088</div><div class="card-label">Escolas com matrícula ativa</div><div class="card-sub">SERE, coddependência 2, ao vivo</div></div></div>
-  </div>
-
-  <!-- ERROS / PENDENCIAS -->
-  <div class="section-title">Situação Geral e Pendências</div>
-  <div class="pend-list">
-    <div class="pend-item grave">
-      <div class="pend-num">55%</div>
-      <div class="pend-body"><h4>Alunos ativos no SERE ainda sem cadastro estimado no SGP</h4><p>Com base na carga de 28/08/2026: cerca de 506 mil dos 913 mil alunos ativos do SERE ainda não têm correspondência no espelho local do SGP. Número aproximado — recomenda-se nova carga do espelho antes de qualquer ação em massa.</p></div>
-    </div>
-    <div class="pend-item grave">
-      <div class="pend-num">0%</div>
-      <div class="pend-body"><h4>Enturmação não iniciada</h4><p>O script genérico de enturmação precisa ser adaptado para funcionar sem um co_entidade de rede fixo (cada escola tem seu próprio INEP).</p></div>
-    </div>
-    <div class="pend-item leve">
-      <div class="pend-num">3</div>
-      <div class="pend-body"><h4>Módulos ainda não estruturados</h4><p>Componentes curriculares, frequência mensal e avaliação de desempenho não têm hoje um pipeline sistemático para a rede estadual, apenas scripts ad-hoc/pontuais.</p></div>
-    </div>
-  </div>
-
-  <!-- COMO É FEITO -->
-  <div class="section-title">Como é Feito — Processo Técnico</div>
-  <div class="sistemas">
-    <div class="sistema">
-      <div class="sis-header" style="background:var(--azul2)">SERE — Sistema Estadual de Registro Escolar</div>
-      <div class="sis-body">
-        <strong>Gestão:</strong> SEED/PR<br>
-        <strong>Tecnologia:</strong> PostgreSQL · banco escola · schema sa_escola — consulta direta, <strong>sem</strong> a view <code>seed.mv_pdm2_estudantes</code> usada nos municípios<br>
-        <strong>Diferença chave:</strong> cada escola estadual mantém seu próprio código INEP/co_entidade — não há um <code>X-CODIGO-ENTIDADE</code> único de rede como em Curitiba (4034) ou Campo Largo (3999); o cabeçalho de autenticação usa o INEP da escola de cada aluno.
-      </div>
-    </div>
-    <div class="sistema">
-      <div class="sis-header" style="background:var(--roxo)">Espelho SGP (carga automática)</div>
-      <div class="sis-body">
-        <strong>Tecnologia:</strong> MySQL (cmde) · tabelas <code>pdm2_get_estudantes</code> / <code>pdm2_get_estudantes_matriculas</code><br>
-        <strong>Origem:</strong> carga diária via pipeline automatizado (fora deste repositório) — última execução com dados novos identificada em 28/08/2026<br><br>
-        <strong>Uso:</strong> comparado contra <code>seed.mv_censo_alunos_sgp</code> (matview do SERE) no script <code>validar_sere_sgp_v2.py</code> para reconciliação por CPF.
-      </div>
-    </div>
-  </div>
-
-  <div class="fluxo">
-    <div class="fluxo-step"><div class="fluxo-num" style="color:var(--azul2)">1</div><div class="fluxo-label" style="color:var(--azul2)">Extração</div><div class="fluxo-sub">SQL direto no SERE</div></div>
-    <div class="fluxo-arrow">→</div>
-    <div class="fluxo-step"><div class="fluxo-num" style="color:var(--azul2)">2</div><div class="fluxo-label" style="color:var(--azul2)">Filtro por lote</div><div class="fluxo-sub">CGMs/CSV específicos</div></div>
-    <div class="fluxo-arrow">→</div>
-    <div class="fluxo-step laranja"><div class="fluxo-num" style="color:var(--laran2)">3</div><div class="fluxo-label" style="color:var(--laran2)">Envio API pontual</div><div class="fluxo-sub">estudantes/frequência faltantes</div></div>
-    <div class="fluxo-arrow">→</div>
-    <div class="fluxo-step"><div class="fluxo-num" style="color:var(--azul2)">4</div><div class="fluxo-label" style="color:var(--azul2)">Sem enturmação/componentes/notas</div><div class="fluxo-sub">ainda não estruturado</div></div>
-  </div>
-
-  <div class="api-box">
-    <h3>API SGP v2 — MEC</h3>
-    <p><code>api-cmde2.gestaopresente.mec.gov.br/api/v2</code> · Bearer JWT · X-CODIGO-ENTIDADE: INEP da escola do aluno (sem entidade de rede fixa)</p>
-    <p style="margin-top:6px;">Scripts de referência: <code>enviar_alunos_estadual.py</code>, <code>enviar_frequencia_estadual.py</code></p>
-  </div>
-
-  <div class="nota">
-    <strong>Nota metodológica:</strong> os números do SERE nesta página vêm de consulta ao vivo hoje (03/09/2026). Os números do lado SGP vêm da carga automática mais recente disponível no espelho local (28/08/2026) — não foi executado um redownload completo do SGP para a rede estadual dentro do tempo desta atualização (ao contrário de Curitiba, cujo redownload completo leva ~15 minutos; para ~2.088 escolas estaduais o mesmo processo seria significativamente mais demorado). Onde não havia dado confiável disponível, esta página marca explicitamente "não disponível" em vez de estimar.
-  </div>
-
+  <div class="section-title">Cadastro de Estudantes</div>
+  <div class="section-sub">A rede estadual usa um pipeline próprio, sem espelho local do SGP — só o universo do SERE é consultável de forma confiável hoje</div>
+<div class="cards-2" style="display:grid;gap:16px;margin-bottom:16px;grid-template-columns:repeat(2,1fr)"><div class="card c-azul"><div class="card-bar"></div><div class="card-body"><div class="card-num">938.626</div><div class="card-label">Alunos ativos no SERE</div><div class="card-sub">dependência 2, período letivo 261</div></div></div><div class="card c-laranja"><div class="card-bar"></div><div class="card-body"><div class="card-num">n/d</div><div class="card-label">Cadastrados no SGP</div><div class="card-sub">sem espelho local para esta rede</div></div></div></div>
+  <div class="nota nota-erro"><strong>Escopo:</strong> enturmação, componentes curriculares, frequência e notas da rede estadual não têm pipeline equivalente ao dos municípios. Os números aparecem como <em>n/d</em> em vez de estimados — preferimos ausência de dado a dado inventado.</div>
 </div>
-
 <div class="footer">
-  <h3>SEED/PR · MEC</h3>
-  <p>Portaria MEC nº 832/2025 — Conjunto Mínimo de Dados da Educação Básica (CMDEB)</p>
-  <p>Rede Estadual — Paraná · Ano letivo 2026 · Ambiente de Produção · Snapshot 28/08–03/09/2026</p>
-  <div class="footer-links">
-    <a href="status.html">← Voltar à visão geral</a>
-    <a href="curitiba.html">Relatório Curitiba</a>
-    <a href="campolargo.html">Relatório Campo Largo</a>
-  </div>
+  <h3>PDM2 — Integração SGP/CMDE ↔ SERE · Paraná</h3>
+  <p>Página gerada automaticamente por <code>gerar_portal_status.py</code> em 04/09/2026 09:28</p>
+  <p>Os números são consultados diretamente nos bancos de origem (SERE, RCDIGM), no espelho local do SGP e na API do SGP no momento da geração.</p>
 </div>
-
-</body>
-</html>
+</body></html>

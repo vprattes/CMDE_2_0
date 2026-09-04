@@ -3,245 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDM2 — Status ao Vivo — Visão Geral</title>
-<meta name="description" content="Painel comparativo em tempo real da integração SGP/CMDE com o SERE do Paraná, para Curitiba, Campo Largo e a rede estadual.">
+<title>PDM2 — Status — Visão Geral</title>
 <link rel="stylesheet" href="pdm2-status.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
 <body>
-
-<div class="topnav">
-  <div class="topnav-inner">
-    <a href="status.html" class="topnav-brand"><span class="dot"></span>PDM2 · STATUS AO VIVO</a>
-    <div class="topnav-links">
-      <a href="status.html" class="active">Visão geral</a>
-      <a href="curitiba.html">Curitiba</a>
-      <a href="campolargo.html">Campo Largo</a>
-      <a href="estadual.html">Rede Estadual</a>
-      <a href="index.html">Planejamento (NEXO)</a>
-    </div>
-  </div>
-</div>
+<div class="topnav"><div class="topnav-inner">
+  <a href="status.html" class="topnav-brand"><span class="dot"></span>PDM2 · STATUS</a>
+  <div class="topnav-links"><a href="status.html" class="active">Visão geral</a><a href="curitiba.html">Curitiba</a><a href="campolargo.html">Campo Largo</a><a href="estadual.html">Rede Estadual</a><a href="index.html">Planejamento (NEXO)</a></div>
+</div></div>
 
 <div class="header">
-  <div class="header-top">
-    <div class="inst-badges">
-      <div class="badge"><div class="badge-title">SEED</div><div class="badge-sub">Paraná</div><div class="badge-sub">Sec. Estado Educação</div></div>
-      <div class="badge"><div class="badge-title">MEC</div><div class="badge-sub">Ministério</div><div class="badge-sub">da Educação</div></div>
-      <div class="badge"><div class="badge-title">SGP v2</div><div class="badge-sub">API</div><div class="badge-sub">CMDE 2.0</div></div>
-    </div>
-    <div class="header-titles">
-      <h1>PDM2 — INTEGRAÇÃO SGP/CMDE ↔ SERE</h1>
-      <h2>Painel de Status ao Vivo — Visão Geral das 3 Redes</h2>
-      <p>Snapshot consultado diretamente nos bancos de origem (SERE, RCDIGM) e no espelho local do SGP · Paraná</p>
-    </div>
-  </div>
-  <div class="header-bottom">
-    Curitiba · Campo Largo · Rede Estadual do Paraná
-    <span>Ano letivo 2026</span>
-  </div>
+  <div class="header-top"><div class="header-titles">
+    <h1>PDM2 — INTEGRAÇÃO SGP/CMDE ↔ SERE</h1>
+    <h2>Painel de Status — Visão Geral das 3 Redes</h2>
+    <p>Números consultados nos bancos de origem e na API do SGP no momento da geração</p>
+  </div></div>
+  <div class="header-bottom">Curitiba · Campo Largo · Rede Estadual<span>Gerado em 04/09/2026 09:28</span></div>
 </div>
-<div class="fresh-bar">
-  <span class="fresh-pill"><span class="lv"></span>Curitiba — dados ao vivo, 03/09/2026 09:42</span>
-  <span class="fresh-pill"><span class="st"></span>Campo Largo — última conciliação 31/08/2026 14:36 (enturmação reconferida ao vivo hoje)</span>
-  <span class="fresh-pill"><span class="st"></span>Rede Estadual — carga SGP de 28/08/2026 · SERE consultado ao vivo hoje</span>
-</div>
-
 <div class="container">
-
   <div class="section-title">Comparativo entre Redes</div>
-  <div class="section-sub">Indicadores-chave do pipeline PDM2 — dados reais consultados diretamente nos bancos em 03/09/2026</div>
-
   <div class="rede-grid">
+
     <div class="rede-card re-curitiba">
-      <div class="rede-head">
-        <h3>Curitiba</h3>
-        <p>co_entidade 4034 · coddependência 3 (municipal) · rede municipal</p>
-      </div>
+      <div class="rede-head"><h3>Curitiba</h3>
+        <p>co_entidade 4034 · rede municipal</p></div>
       <div class="rede-body">
-        <div class="rede-metric">
-          <div class="meter-head"><span>Matriculados no SGP</span><b>99,5%</b></div>
-          <div class="meter-track"><div class="meter-fill" style="width:99.5%;background:var(--azul2)"></div></div>
-        </div>
-        <div class="rede-metric">
-          <div class="meter-head"><span>Enturmados</span><b>92,1%</b></div>
-          <div class="meter-track"><div class="meter-fill" style="width:92.1%;background:var(--verde2)"></div></div>
-        </div>
-        <div class="rede-metric">
-          <div class="meter-head"><span>Frequência — presença média (fev–ago)</span><b>84,0%</b></div>
-          <div class="meter-track"><div class="meter-fill" style="width:84%;background:var(--roxo)"></div></div>
-        </div>
-        <div class="rede-metric">
-          <div class="meter-head"><span>Componentes curriculares vinculados</span><b>início</b></div>
-          <div class="meter-track"><div class="meter-fill" style="width:3%;background:var(--laranja)"></div></div>
-        </div>
-        <div style="font-size:12px;color:var(--cinza);margin-top:4px">
-          127.899 matrículas ativas · 9.821 turmas · 2.598 profissionais · <strong style="color:var(--vermelho)">568 alunos</strong> ainda faltando no SGP
-        </div>
+        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Cadastrados no SGP</span><b>99,9%</b></div><div class="meter-track"><div class="meter-fill" style="width:99.9%;background:var(--azul2)"></div></div></div></div>
+        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Enturmados</span><b>92,1%</b></div><div class="meter-track"><div class="meter-fill" style="width:92.1%;background:var(--verde2)"></div></div></div></div>
+        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Frequência registrada (média dos meses)</span><b>85,4%</b></div><div class="meter-track"><div class="meter-fill" style="width:85.4%;background:var(--roxo)"></div></div></div></div>
       </div>
       <div class="rede-foot"><a href="curitiba.html">Ver relatório completo →</a></div>
     </div>
-
     <div class="rede-card re-campolargo">
-      <div class="rede-head">
-        <h3>Campo Largo</h3>
-        <p>co_entidade 3999 · coddependência 3 (municipal) · rede municipal</p>
-      </div>
+      <div class="rede-head"><h3>Campo Largo</h3>
+        <p>co_entidade 3999 · rede municipal</p></div>
       <div class="rede-body">
-        <div class="rede-metric">
-          <div class="meter-head"><span>Matriculados no SGP</span><b>95,0%</b></div>
-          <div class="meter-track"><div class="meter-fill" style="width:95%;background:var(--azul2)"></div></div>
-        </div>
-        <div class="rede-metric">
-          <div class="meter-head"><span>Enturmados</span><b>99,8%</b></div>
-          <div class="meter-track"><div class="meter-fill" style="width:99.8%;background:var(--verde2)"></div></div>
-        </div>
-        <div class="rede-metric">
-          <div class="meter-head"><span>Frequência — presença média (fev–ago)</span><b>88,9%</b></div>
-          <div class="meter-track"><div class="meter-fill" style="width:88.9%;background:var(--roxo)"></div></div>
-        </div>
-        <div class="rede-metric">
-          <div class="meter-head"><span>Componentes curriculares vinculados</span><b>13/13</b></div>
-          <div class="meter-track"><div class="meter-fill" style="width:100%;background:var(--verde2)"></div></div>
-        </div>
-        <div style="font-size:12px;color:var(--cinza);margin-top:4px">
-          13.841 matrículas ativas · 933 turmas · 1.180 profissionais · <strong style="color:var(--vermelho)">731 alunos</strong> faltando no SGP (queda vs. 27/08 — em investigação)
-        </div>
+        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Cadastrados no SGP</span><b>100,0%</b></div><div class="meter-track"><div class="meter-fill" style="width:100.0%;background:var(--azul2)"></div></div></div></div>
+        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Enturmados</span><b>94,3%</b></div><div class="meter-track"><div class="meter-fill" style="width:94.3%;background:var(--verde2)"></div></div></div></div>
+        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Frequência registrada (média dos meses)</span><b>95,1%</b></div><div class="meter-track"><div class="meter-fill" style="width:95.1%;background:var(--roxo)"></div></div></div></div>
       </div>
       <div class="rede-foot"><a href="campolargo.html">Ver relatório completo →</a></div>
     </div>
-
     <div class="rede-card re-estadual">
-      <div class="rede-head">
-        <h3>Rede Estadual</h3>
-        <p>coddependência 2 (estadual) · sem co_entidade fixo · INEP por escola</p>
-      </div>
-      <div class="rede-body">
-        <div class="rede-metric">
-          <div class="meter-head"><span>Matriculados no SGP</span><b>44,6%</b></div>
-          <div class="meter-track"><div class="meter-fill" style="width:44.6%;background:var(--azul2)"></div></div>
-        </div>
-        <div class="rede-metric">
-          <div class="meter-head"><span>Enturmados</span><b>0%</b></div>
-          <div class="meter-track"><div class="meter-fill" style="width:1%;background:var(--vermelho2)"></div></div>
-        </div>
-        <div class="rede-metric">
-          <div class="meter-head"><span>Frequência mensal</span><b>n/d</b></div>
-          <div class="meter-track"><div class="meter-fill" style="width:0%;background:var(--roxo)"></div></div>
-        </div>
-        <div class="rede-metric">
-          <div class="meter-head"><span>Componentes curriculares</span><b>n/d</b></div>
-          <div class="meter-track"><div class="meter-fill" style="width:0%;background:var(--laranja)"></div></div>
-        </div>
-        <div style="font-size:12px;color:var(--cinza);margin-top:4px">
-          913.462 alunos ativos no SERE · 407.373 cadastrados no SGP (carga de 28/08) · 32.270 profissionais · pipeline ainda em estágio inicial
-        </div>
-      </div>
+      <div class="rede-head"><h3>Rede Estadual</h3><p>dependência 2 · sem espelho local</p></div>
+      <div class="rede-body"><p style="font-size:13px">938.626 alunos ativos no SERE. Indicadores de integração indisponíveis para esta rede.</p></div>
       <div class="rede-foot"><a href="estadual.html">Ver relatório completo →</a></div>
     </div>
   </div>
 
-  <div class="nota">
-    <strong>Sobre as datas:</strong> Curitiba foi reconciliada ao vivo hoje (03/09, 09:42) — o espelho local do SGP foi baixado novamente na hora. Campo Largo usa a última conciliação formal registrada (31/08); a enturmação foi reconferida ao vivo hoje para esta página. A rede estadual usa a carga automática mais recente disponível (28/08) cruzada com o SERE consultado ao vivo — é a rede com processo menos maduro das três, conforme detalhado no relatório individual.
-  </div>
-
-  <!-- COMPARATIVO GRAFICO -->
-  <div class="section-title">Cobertura de Matrícula no SGP</div>
-  <div class="section-sub">% de alunos ativos no SERE que já têm matrícula correspondente no SGP</div>
-  <div class="charts-row">
-    <div class="chart-box">
-      <h3>Cobertura de cadastro (%)</h3>
-      <canvas id="chartCobertura"></canvas>
-    </div>
-    <div class="chart-box">
-      <h3>Enturmação — % de matrículas com turma vinculada</h3>
-      <canvas id="chartEnturmacao"></canvas>
-    </div>
-  </div>
-
-  <!-- TABELA COMPARATIVA -->
-  <div class="section-title">Tabela Comparativa — Todos os Módulos</div>
-  <div class="table-scroll">
-  <table class="cmp-table">
-    <thead>
-      <tr><th>Indicador</th><th>Curitiba</th><th>Campo Largo</th><th>Rede Estadual</th></tr>
-    </thead>
+  <div class="section-title">Números Absolutos</div>
+  <div class="table-scroll"><table class="cmp-table">
+    <thead><tr><th>Indicador</th><th>Curitiba</th><th>Campo Largo</th><th>Estadual</th></tr></thead>
     <tbody>
-      <tr><td>Data de referência</td><td>03/09/2026 (ao vivo)</td><td>31/08/2026</td><td>28/08/2026</td></tr>
-      <tr><td>Alunos ativos no SERE</td><td>120.165</td><td>14.709 (139 sem CPF)</td><td>913.462</td></tr>
-      <tr><td>Estudantes cadastrados no SGP</td><td>127.897</td><td>13.841</td><td>407.373</td></tr>
-      <tr><td>Matrículas ativas no SGP</td><td>127.899</td><td>13.841</td><td>371.679</td></tr>
-      <tr><td>Cobertura de cadastro</td><td class="pct-green">99,5%</td><td class="pct-green">95,0%</td><td class="pct-orange">44,6%</td></tr>
-      <tr><td>Alunos faltando no SGP</td><td>568</td><td>731</td><td>não apurado (escala estadual)</td></tr>
-      <tr><td>Matrículas com turma vinculada</td><td class="pct-green">92,1%</td><td class="pct-green">99,8%</td><td class="pct-red">0%</td></tr>
-      <tr><td>Turmas no SGP</td><td>9.821</td><td>933</td><td>não apurado</td></tr>
-      <tr><td>Componentes curriculares</td><td>início (36 tentativas)</td><td>13 vinculados a todas as turmas</td><td>n/d</td></tr>
-      <tr><td>Frequência mensal — meses com dado na origem</td><td>fev–set/2026 (8)</td><td>fev–set/2026 (8)</td><td>n/d</td></tr>
-      <tr><td>Frequência — presença média (fev–ago)</td><td>84,0%</td><td>88,9%</td><td>n/d</td></tr>
-      <tr><td>Avaliação de desempenho / notas</td><td>não iniciado</td><td>1º trimestre enviado (31.580 + reenvio)</td><td>não identificado</td></tr>
-      <tr><td>Profissionais cadastrados</td><td>2.598</td><td>1.180</td><td>32.270</td></tr>
-      <tr><td>Escolas com matrícula ativa</td><td>437</td><td>58</td><td>2.088</td></tr>
-      <tr><td>Pendência mais relevante em aberto</td><td>103 mil registros de frequência de março com erro confirmado</td><td>queda de 731 alunos vs. execução de 27/08 — investigar</td><td>enturmação e componentes ainda não iniciados</td></tr>
-    </tbody>
-  </table>
-  </div>
-
-  <div class="nota">
-    Legenda: <strong>não apurado</strong> = não foi possível calcular com confiança dentro do tempo disponível para esta atualização (não é o mesmo que zero). <strong>n/d</strong> = processo/fonte de dado ainda não existe para essa rede neste momento do projeto.
-  </div>
-
-  <!-- MODULOS DO PIPELINE -->
-  <div class="section-title">Módulos do Pipeline PDM2</div>
-  <div class="modulos">
-    <div class="modulo"><div class="mod-header" style="background:var(--azul2)"><h4>1. Estudantes e Matrículas</h4><span>SERE → SGP</span></div><div class="mod-body">Extrai alunos e matrículas ativas do SERE (view <code>seed.mv_pdm2_estudantes</code> nos municípios, tabelas diretas na rede estadual) e cadastra/atualiza no SGP via <code>POST/PUT /estudantes</code> e <code>/matriculas</code>.</div></div>
-    <div class="modulo"><div class="mod-header" style="background:var(--verde2)"><h4>2. Enturmação</h4><span>Vínculo aluno-turma</span></div><div class="mod-body">Casa a turma do SERE (via <code>co_turma_rede</code>) com a turma já cadastrada no SGP e envia <code>POST /matriculas/enturmacao/lote</code>.</div></div>
-    <div class="modulo"><div class="mod-header" style="background:var(--roxo)"><h4>3. Componentes Curriculares</h4><span>Vínculo turma-disciplina</span></div><div class="mod-body">Mapeia disciplinas do RCDIGM (<code>tb_classe</code>) para os componentes curriculares do SGP e vincula via <code>PUT /turmas/lote</code>.</div></div>
-    <div class="modulo"><div class="mod-header" style="background:var(--azul2)"><h4>4. Frequência Mensal</h4><span>RCDIGM → SGP</span></div><div class="mod-body">Horas ofertadas/presença por aluno e mês, calculadas na materialized view <code>seed.mv_pdm2_frequencia_mensal</code> e enviadas via <code>POST /frequencia-mensal/lote</code>.</div></div>
-    <div class="modulo"><div class="mod-header" style="background:var(--laranja)"><h4>5. Avaliação de Desempenho</h4><span>Notas por componente</span></div><div class="mod-body">Notas do RCDIGM (0–100) convertidas para a escala do SGP (numérica ou conceitual) e enviadas via <code>POST /avaliacao-desempenho/lote</code>.</div></div>
-    <div class="modulo"><div class="mod-header" style="background:var(--vermelho2)"><h4>6. Profissionais</h4><span>Cadastro de docentes</span></div><div class="mod-body">Professores e demais profissionais, com formações e funções, cadastrados via <code>POST /profissionais/lote</code>.</div></div>
-  </div>
-
-  <div class="api-box">
-    <h3>API SGP v2 — MEC</h3>
-    <p><code>api-cmde2.gestaopresente.mec.gov.br/api/v2</code> · Bearer JWT · cabeçalho X-CODIGO-ENTIDADE por rede (municípios) ou por escola (estadual)</p>
-    <p style="margin-top:6px;">Lotes assíncronos de até 500 registros · Python: psycopg2/pymysql · requests · python-dotenv · SQLAlchemy</p>
-  </div>
-
+<tr><td>Alunos esperados (SERE)</td><td>119.892</td><td>13.963</td><td>938.626</td></tr><tr><td>Estudantes no SGP</td><td>127.897</td><td>14.624</td><td>n/d</td></tr><tr><td>Faltando no SGP</td><td>99</td><td>1</td><td>n/d</td></tr><tr><td>Matrículas ativas</td><td>127.899</td><td>14.624</td><td>n/d</td></tr><tr><td>Com turma</td><td>117.841</td><td>13.790</td><td>n/d</td></tr><tr><td>Sem turma</td><td>10.058</td><td>834</td><td>n/d</td></tr><tr><td>Turmas no SGP</td><td>9.821</td><td>933</td><td>n/d</td></tr></tbody></table></div>
 </div>
-
 <div class="footer">
-  <h3>SEED/PR · SEMED Curitiba · SEMED Campo Largo · MEC</h3>
-  <p>Painel de status PDM2 — snapshot manual atualizado a partir de consulta direta aos bancos de origem</p>
-  <p>Ano letivo 2026 · Ambiente de Produção</p>
-  <div class="footer-links">
-    <a href="curitiba.html">Relatório Curitiba</a>
-    <a href="campolargo.html">Relatório Campo Largo</a>
-    <a href="estadual.html">Relatório Rede Estadual</a>
-    <a href="index.html">Documento de planejamento (NEXO)</a>
-  </div>
+  <h3>PDM2 — Integração SGP/CMDE ↔ SERE · Paraná</h3>
+  <p>Página gerada automaticamente por <code>gerar_portal_status.py</code> em 04/09/2026 09:28</p>
+  <p>Os números são consultados diretamente nos bancos de origem (SERE, RCDIGM), no espelho local do SGP e na API do SGP no momento da geração.</p>
 </div>
-
-<script>
-new Chart(document.getElementById('chartCobertura'), {
-  type: 'bar',
-  data: {
-    labels: ['Curitiba', 'Campo Largo', 'Rede Estadual'],
-    datasets: [{ label: 'Cobertura de cadastro (%)', data: [99.5, 95.0, 44.6],
-      backgroundColor: ['#185FA5', '#1D9E75', '#7F77DD'], borderRadius: 6 }]
-  },
-  options: { responsive:true, plugins:{legend:{display:false}},
-    scales:{ y:{ beginAtZero:true, max:100, ticks:{callback:v=>v+'%'}, grid:{color:'#E5E3DC'} }, x:{ grid:{display:false} } } }
-});
-new Chart(document.getElementById('chartEnturmacao'), {
-  type: 'bar',
-  data: {
-    labels: ['Curitiba', 'Campo Largo', 'Rede Estadual'],
-    datasets: [{ label: 'Enturmação (%)', data: [92.1, 99.8, 0],
-      backgroundColor: ['#185FA5', '#1D9E75', '#7F77DD'], borderRadius: 6 }]
-  },
-  options: { responsive:true, plugins:{legend:{display:false}},
-    scales:{ y:{ beginAtZero:true, max:100, ticks:{callback:v=>v+'%'}, grid:{color:'#E5E3DC'} }, x:{ grid:{display:false} } } }
-});
-</script>
-</body>
-</html>
+</body></html>
