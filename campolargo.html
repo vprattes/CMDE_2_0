@@ -18,10 +18,10 @@
     <h2>Campo Largo — Relatório de Status</h2>
     <p>co_entidade 3999 · dependência 3 (rede municipal) · ano letivo 2026</p>
   </div></div>
-  <div class="header-bottom">Gerado em 10/09/2026 15:21</div>
+  <div class="header-bottom">Gerado em 17/09/2026 20:14</div>
 </div>
 <div class="fresh-bar">
-  <span class="fresh-pill"><span class="lv"></span>Espelho do SGP carregado em 04/09/2026 08:33</span>
+  <span class="fresh-pill"><span class="lv"></span>Espelho do SGP carregado em 17/09/2026 14:46</span>
   <span class="fresh-pill"><span class="lv"></span>SERE, RCDIGM e API do SGP consultados agora</span>
 </div>
 <div class="container">
@@ -38,16 +38,14 @@
   <div class="chart-box"><div style="max-width:820px;margin:0 auto;"><div class="bar-row"><div class="bar-label">EI Pré-escola</div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#1D9E75"></div></div><div class="bar-val" style="color:#0F6E56">2.945</div></div><div class="bar-row"><div class="bar-label">EI Creche</div><div class="bar-track"><div class="bar-fill" style="width:87.3%;background:#1D9E75"></div></div><div class="bar-val" style="color:#0F6E56">2.572</div></div><div class="bar-row"><div class="bar-label">EF 5º Ano</div><div class="bar-track"><div class="bar-fill" style="width:63.4%;background:#1D9E75"></div></div><div class="bar-val" style="color:#0F6E56">1.866</div></div><div class="bar-row"><div class="bar-label">EF 3º Ano</div><div class="bar-track"><div class="bar-fill" style="width:61.6%;background:#1D9E75"></div></div><div class="bar-val" style="color:#0F6E56">1.815</div></div><div class="bar-row"><div class="bar-label">EF 4º Ano</div><div class="bar-track"><div class="bar-fill" style="width:60.9%;background:#1D9E75"></div></div><div class="bar-val" style="color:#0F6E56">1.793</div></div><div class="bar-row"><div class="bar-label">EF 2º Ano</div><div class="bar-track"><div class="bar-fill" style="width:59.7%;background:#1D9E75"></div></div><div class="bar-val" style="color:#0F6E56">1.759</div></div><div class="bar-row"><div class="bar-label">EF 1º Ano</div><div class="bar-track"><div class="bar-fill" style="width:55.0%;background:#1D9E75"></div></div><div class="bar-val" style="color:#0F6E56">1.621</div></div><div class="bar-row"><div class="bar-label">EJA — EF Anos Iniciais</div><div class="bar-track"><div class="bar-fill" style="width:5.3%;background:#1D9E75"></div></div><div class="bar-val" style="color:#0F6E56">157</div></div><div class="bar-row"><div class="bar-label">Não aplicável (AEE)</div><div class="bar-track"><div class="bar-fill" style="width:3.3%;background:#1D9E75"></div></div><div class="bar-val" style="color:#0F6E56">96</div></div></div></div>
 
   <div class="section-title">Frequência Mensal</div>
-  <div class="section-sub">Elegível (RCDIGM) × efetivamente registrado no SGP — "faltantes" vem do próprio SGP (<code>GET /frequencia-mensal-matricula/{ano}/{mes}/faltantes</code>)</div>
-  <div class="table-scroll"><table class="freq-table">
-    <thead><tr><th>Mês</th><th>Elegível</th><th>Enviado</th><th>Faltantes</th><th>Cobertura</th></tr></thead>
-    <tbody><tr><td>Fev/2026</td><td>13.762</td><td>13.212</td><td>550</td><td class="pct-green">96,0%</td></tr><tr><td>Mar/2026</td><td>14.013</td><td>13.399</td><td>614</td><td class="pct-green">95,6%</td></tr><tr><td>Abr/2026</td><td>14.036</td><td>13.400</td><td>636</td><td class="pct-green">95,5%</td></tr><tr><td>Mai/2026</td><td>14.060</td><td>13.377</td><td>683</td><td class="pct-green">95,1%</td></tr><tr><td>Jun/2026</td><td>14.046</td><td>13.347</td><td>699</td><td class="pct-green">95,0%</td></tr><tr><td>Jul/2026</td><td>14.113</td><td>13.397</td><td>716</td><td class="pct-orange">94,9%</td></tr><tr><td>Ago/2026</td><td>14.179</td><td>13.263</td><td>916</td><td class="pct-orange">93,5%</td></tr><tr><td>Set/2026</td><td>6.286</td><td>n/d</td><td colspan="2" class="pct-orange">índice do SGP ainda não reindexado</td></tr></tbody>
-  </table></div>
-  <div class="nota">O total de "faltantes" reportado pelo SGP pode incluir matrículas sem aula registrada no RCDIGM, por isso a cobertura pode não fechar exatamente com o elegível.</div>
+  <div class="section-sub">Indisponível nesta geração</div>
+  <div class="nota">Não foi possível apurar a frequência elegível porque
+  a materialized view seed.mv_pdm2_frequencia_mensal está sem dados (precisa de REFRESH). Os demais números desta página não dependem dessa
+  fonte e estão atualizados.</div>
 </div>
 <div class="footer">
   <h3>PDM2 — Integração SGP/CMDE ↔ SERE · Paraná</h3>
-  <p>Página gerada automaticamente por <code>gerar_portal_status.py</code> em 10/09/2026 15:21</p>
+  <p>Página gerada automaticamente por <code>gerar_portal_status.py</code> em 17/09/2026 20:14</p>
   <p>Os números são consultados diretamente nos bancos de origem (SERE, RCDIGM), no espelho local do SGP e na API do SGP no momento da geração.</p>
 </div>
 </body></html>
