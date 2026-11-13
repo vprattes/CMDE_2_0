@@ -9,16 +9,17 @@
 <body>
 <div class="topnav"><div class="topnav-inner">
   <a href="status.html" class="topnav-brand"><span class="dot"></span>PDM2 · STATUS</a>
-  <div class="topnav-links"><a href="status.html" class="active">Visão geral</a><a href="curitiba.html">Curitiba</a><a href="campolargo.html">Campo Largo</a><a href="estadual.html">Rede Estadual</a><a href="pedemeia.html">Pé-de-Meia</a><a href="index.html">Planejamento (NEXO)</a></div>
+  <div class="topnav-links"><a href="status.html" class="active">Visão geral</a><a href="curitiba.html">Curitiba</a><a href="campolargo.html">Campo Largo</a><a href="saojosedospinhais.html">São José dos Pinhais</a><a href="estadual.html">Rede Estadual</a><a href="pedemeia.html">Pé-de-Meia</a><a href="index.html">Planejamento (NEXO)</a></div>
 </div></div>
 
+<style>.re-curitiba .rede-head { background: linear-gradient(135deg,var(--azul3),var(--azul2)); }.re-campolargo .rede-head { background: linear-gradient(135deg,#0F6E56,#1D9E75); }.re-saojosedospinhais .rede-head { background: linear-gradient(135deg,#9A3412,#C2410C); }.rede-grid { grid-template-columns: repeat(2, 1fr); }@media (max-width: 900px) { .rede-grid { grid-template-columns: 1fr; } }</style>
 <div class="header">
   <div class="header-top"><div class="header-titles">
     <h1>PDM2 — INTEGRAÇÃO SGP/CMDE ↔ SERE</h1>
-    <h2>Painel de Status — Visão Geral das 3 Redes</h2>
+    <h2>Painel de Status — Visão Geral das 4 Redes</h2>
     <p>Números consultados nos bancos de origem e na API do SGP no momento da geração</p>
   </div></div>
-  <div class="header-bottom">Curitiba · Campo Largo · Rede Estadual<span>Gerado em 06/11/2026 07:06</span></div>
+  <div class="header-bottom">Curitiba · Campo Largo · São José dos Pinhais · Rede Estadual<span>Gerado em 13/11/2026 06:29</span></div>
 </div>
 <div class="container">
   <div class="section-title">Comparativo entre Redes</div>
@@ -28,7 +29,7 @@
       <div class="rede-head"><h3>Curitiba</h3>
         <p>co_entidade 4034 · rede municipal</p></div>
       <div class="rede-body">
-        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Cadastrados no SGP</span><b>99,7%</b></div><div class="meter-track"><div class="meter-fill" style="width:99.7%;background:var(--azul2)"></div></div></div></div>
+        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Cadastrados no SGP</span><b>99,3%</b></div><div class="meter-track"><div class="meter-fill" style="width:99.3%;background:var(--azul2)"></div></div></div></div>
         <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Enturmados</span><b>100,0%</b></div><div class="meter-track"><div class="meter-fill" style="width:100.0%;background:var(--verde2)"></div></div></div></div>
         <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Frequência registrada (média dos meses fechados)</span><b>100,0%</b></div><div class="meter-track"><div class="meter-fill" style="width:100.0%;background:var(--roxo)"></div></div></div></div>
       </div>
@@ -38,19 +39,29 @@
       <div class="rede-head"><h3>Campo Largo</h3>
         <p>co_entidade 3999 · rede municipal</p></div>
       <div class="rede-body">
-        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Cadastrados no SGP</span><b>99,9%</b></div><div class="meter-track"><div class="meter-fill" style="width:99.9%;background:var(--azul2)"></div></div></div></div>
+        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Cadastrados no SGP</span><b>99,5%</b></div><div class="meter-track"><div class="meter-fill" style="width:99.5%;background:var(--azul2)"></div></div></div></div>
         <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Enturmados</span><b>100,0%</b></div><div class="meter-track"><div class="meter-fill" style="width:100.0%;background:var(--verde2)"></div></div></div></div>
         <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Frequência registrada (média dos meses fechados)</span><b>100,0%</b></div><div class="meter-track"><div class="meter-fill" style="width:100.0%;background:var(--roxo)"></div></div></div></div>
       </div>
       <div class="rede-foot"><a href="campolargo.html">Ver relatório completo →</a></div>
     </div>
-    <div class="rede-card re-estadual">
-      <div class="rede-head"><h3>Rede Estadual</h3><p>dependência 2 · espelho de 05/11/2026 10:56</p></div>
+    <div class="rede-card re-saojosedospinhais">
+      <div class="rede-head"><h3>São José dos Pinhais</h3>
+        <p>co_entidade 4291 · rede municipal</p></div>
       <div class="rede-body">
         <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Cadastrados no SGP</span><b>99,6%</b></div><div class="meter-track"><div class="meter-fill" style="width:99.6%;background:var(--azul2)"></div></div></div></div>
-        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Enturmados</span><b>99,8%</b></div><div class="meter-track"><div class="meter-fill" style="width:99.8%;background:var(--verde2)"></div></div></div></div>
-        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Frequência registrada (média dos meses fechados)</span><b>100,0%</b></div><div class="meter-track"><div class="meter-fill" style="width:100.0%;background:var(--roxo)"></div></div></div></div>
-        <p style="font-size:13px">360.746 alunos ativos no SERE · 361.057 no SGP · 808 matrículas ainda sem turma.</p>
+        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Enturmados</span><b>100,0%</b></div><div class="meter-track"><div class="meter-fill" style="width:100.0%;background:var(--verde2)"></div></div></div></div>
+        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Frequência registrada (média dos meses fechados)</span><b>99,1%</b></div><div class="meter-track"><div class="meter-fill" style="width:99.1%;background:var(--roxo)"></div></div></div></div>
+      </div>
+      <div class="rede-foot"><a href="saojosedospinhais.html">Ver relatório completo →</a></div>
+    </div>
+    <div class="rede-card re-estadual">
+      <div class="rede-head"><h3>Rede Estadual</h3><p>dependência 2 · espelho de 11/11/2026 20:32</p></div>
+      <div class="rede-body">
+        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Cadastrados no SGP</span><b>99,6%</b></div><div class="meter-track"><div class="meter-fill" style="width:99.6%;background:var(--azul2)"></div></div></div></div>
+        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Enturmados</span><b>99,4%</b></div><div class="meter-track"><div class="meter-fill" style="width:99.4%;background:var(--verde2)"></div></div></div></div>
+        <div class="rede-metric"><div class="meter"><div class="meter-head"><span>Frequência registrada (média dos meses fechados)</span><b>99,7%</b></div><div class="meter-track"><div class="meter-fill" style="width:99.7%;background:var(--roxo)"></div></div></div></div>
+        <p style="font-size:13px">360.858 alunos ativos no SERE · 360.989 no SGP · 2.347 matrículas ainda sem turma.</p>
       </div>
       <div class="rede-foot"><a href="estadual.html">Ver relatório completo →</a></div>
     </div>
@@ -58,13 +69,13 @@
 
   <div class="section-title">Números Absolutos</div>
   <div class="table-scroll"><table class="cmp-table">
-    <thead><tr><th>Indicador</th><th>Curitiba</th><th>Campo Largo</th><th>Estadual</th></tr></thead>
+    <thead><tr><th>Indicador</th><th>Curitiba</th><th>Campo Largo</th><th>São José dos Pinhais</th><th>Estadual</th></tr></thead>
     <tbody>
-<tr><td>Alunos esperados (SERE)</td><td>120.311</td><td>13.966</td><td>360.746</td></tr><tr><td>Estudantes no SGP</td><td>119.988</td><td>13.954</td><td>361.057</td></tr><tr><td>Faltando no SGP</td><td>370</td><td>14</td><td>1.313</td></tr><tr><td>No SGP sem SERE ativo</td><td>47</td><td>2</td><td>1.624</td></tr><tr><td>Matrículas ativas</td><td>123.766</td><td>13.955</td><td>361.744</td></tr><tr><td>Com turma</td><td>123.735</td><td>13.954</td><td>360.936</td></tr><tr><td>Sem turma</td><td>31</td><td>1</td><td>808</td></tr><tr><td>↳ a enturmar (ativo no SERE)</td><td>13</td><td>1</td><td>—</td></tr><tr><td>↳ aguardando desfecho (saiu no SERE)</td><td>17</td><td>0</td><td>—</td></tr><tr><td>Sem CPF no SERE (não pode ser cadastrado)</td><td>465</td><td>139</td><td>500</td></tr><tr><td>Turmas no SGP</td><td>10.218</td><td>936</td><td>21.044</td></tr></tbody></table></div>
+<tr><td>Alunos esperados (SERE)</td><td>120.336</td><td>13.985</td><td>29.544</td><td>360.858</td></tr><tr><td>Estudantes no SGP</td><td>119.988</td><td>13.954</td><td>29.426</td><td>360.989</td></tr><tr><td>Faltando no SGP</td><td>823</td><td>74</td><td>119</td><td>1.494</td></tr><tr><td>No SGP sem SERE ativo</td><td>475</td><td>43</td><td>1</td><td>1.625</td></tr><tr><td>Matrículas ativas</td><td>123.766</td><td>13.955</td><td>29.427</td><td>363.096</td></tr><tr><td>Com turma</td><td>123.735</td><td>13.954</td><td>29.425</td><td>360.749</td></tr><tr><td>Sem turma</td><td>31</td><td>1</td><td>2</td><td>2.347</td></tr><tr><td>↳ a enturmar (ativo no SERE)</td><td>13</td><td>1</td><td>1</td><td>—</td></tr><tr><td>↳ aguardando desfecho (saiu no SERE)</td><td>17</td><td>0</td><td>1</td><td>—</td></tr><tr><td>Sem CPF no SERE (não pode ser cadastrado)</td><td>478</td><td>138</td><td>968</td><td>494</td></tr><tr><td>Turmas no SGP</td><td>10.191</td><td>936</td><td>1.541</td><td>21.044</td></tr></tbody></table></div>
 </div>
 <div class="footer">
   <h3>PDM2 — Integração SGP/CMDE ↔ SERE · Paraná</h3>
-  <p>Página gerada automaticamente por <code>gerar_portal_status.py</code> em 06/11/2026 07:06</p>
+  <p>Página gerada automaticamente por <code>gerar_portal_status.py</code> em 13/11/2026 06:29</p>
   <p>Os números são consultados diretamente nos bancos de origem (SERE, RCDIGM), no espelho local do SGP e na API do SGP no momento da geração.</p>
 </div>
 </body></html>
